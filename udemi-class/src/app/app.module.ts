@@ -1,6 +1,6 @@
+// import on top necessary for typescript it should know about where things come from to compile
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 
@@ -8,8 +8,9 @@ import { AppComponent } from './app.component';
   declarations: [
     AppComponent
   ],
+  // this one imports it is for angular to know what to import
   imports: [
-    BrowserModule, FormsModule
+    BrowserModule
   ],
   providers: [],
   bootstrap: [AppComponent]
