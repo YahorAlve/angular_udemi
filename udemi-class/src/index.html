@@ -9,6 +9,16 @@
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
-  <app-root></app-root>
+  <!--Agular is js framework wich will change our DOM at runtime that is why here we will NOT see Loading ...
+      and instead app-root content will be taken from app component and overriden in DOM structure in browser
+  -->
+  <app-root>Loading ...</app-root>
 </body>
+<!--
+  Here is going to be injected java script code by CLI which will be responsible for bootstrap of application
+  It is happening each time we call ng serve
+  For instanse :
+  ...
+  <script type="text/javascript" src="main.js"></script> - which is call main method
+-->
 </html>
