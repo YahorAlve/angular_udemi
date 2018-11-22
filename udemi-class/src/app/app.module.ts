@@ -7,6 +7,7 @@ import { NgModule } from '@angular/core';
 // we don't need to add ts - it will be added automatically by CLI
 import { AppComponent } from './app.component';
 import { ServerComponent } from './server/server.component';
+import { ServersComponent } from './servers/servers.component';
 
 // Module is passed to bootstrap as an argument and looks like configuration which angular analizes to start and work with app
 // Usually only oine module exist but in big projects could be more then one
@@ -14,7 +15,8 @@ import { ServerComponent } from './server/server.component';
   // Just add new component is not enough - angular won't scan all components in folder. We have to declare all components below
   declarations: [
     AppComponent,
-    ServerComponent
+    ServerComponent,
+    ServersComponent
   ],
   // this one imports it is for angular to know what other modules to import
   imports: [
