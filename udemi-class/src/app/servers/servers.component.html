@@ -1,5 +1,14 @@
-<!--we can use components as often as we want just by puuting selectos as often as needed-->
+<!--
+  we can use components as often as we want just by puuting selectos as often as needed
+-->
 <app-server></app-server>
 <app-server></app-server>
 <app-server></app-server>
 <app-server></app-server>
+<!--
+  Browser parse html and build DOM structure and propert of element is set up in specific dom element, this dom elemnt
+  can contain a lot other properties which were not set up(and sometimes is not possible to set up by) HTML. When we
+  doing Porperty Binding Angular attaches to this DOM elemtn attribute(property) value to dinamic value from component
+-->
+<!-- <button class="btn btn-primary" disabled>Add server</button> -->
+<button class="btn btn-primary" [disabled] = "!addNewServerAllowed">Add server</button>
