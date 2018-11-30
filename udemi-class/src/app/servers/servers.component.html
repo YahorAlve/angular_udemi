@@ -11,4 +11,16 @@
   doing Porperty Binding Angular attaches to this DOM elemtn attribute(property) value to dinamic value from component
 -->
 <!-- <button class="btn btn-primary" disabled>Add server</button> -->
-<button class="btn btn-primary" [disabled] = "!addNewServerAllowed">Add server</button>
+<!--
+  We can use string interpolation instead of property binding and vise versa but it is suggested just follow logic to use
+  property binding for changing some properties of element wereas for showing some string info better use string interpolation
+-->
+<!--
+  Sintacsis is [property] = " typescript expresion ", {{ typescript expression }} - these expressions are not part of HTML!
+  they are evaluted by Angular and it will extract and execute code of type script expressions. We also can't mix property
+  binding with string interpolation - they work separatly but not one in another.
+-->
+<button class="btn btn-primary" [disabled]="!addNewServerAllowed">
+  Add server
+</button>
+<p>{{ addNewServerAllowed }}</p>

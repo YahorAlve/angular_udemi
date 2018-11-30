@@ -17,6 +17,7 @@ import { Component, OnInit } from '@angular/core';
 export class ServersComponent implements OnInit {
 
   addNewServerAllowed = false;
+  serverCreation = 'No Server Was created!';
 
   // constructor is method executed at time of component created by the angular
   constructor() {
@@ -25,7 +26,7 @@ export class ServersComponent implements OnInit {
     setTimeout(() => {
       this.addNewServerAllowed = true;
     },
-      10000);
+      3000);
   }
 
   ngOnInit() {
