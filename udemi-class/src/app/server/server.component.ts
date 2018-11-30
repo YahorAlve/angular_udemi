@@ -10,4 +10,15 @@ import { Component } from '@angular/core';
 })
 export class ServerComponent {
 
+    // We can just assign values w/o tipe
+    serverId = 10;
+    serverStatus = 'Offline';
+
+    // but also can use typescript feature to assign specific types
+    // serverId: number = 10;
+    // serverStatus: string = 'Offline';
+
+    getServerStatus() {
+        return this.serverStatus;
+    }
 }
