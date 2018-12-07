@@ -16,11 +16,20 @@
   property binding for changing some properties of element wereas for showing some string info better use string interpolation
 -->
 <!--
-  Sintacsis is [property] = " typescript expresion ", {{ typescript expression }} - these expressions are not part of HTML!
+  syntaxis is [property] = " typescript expresion ", {{ typescript expression }} - these expressions are not part of HTML!
   they are evaluted by Angular and it will extract and execute code of type script expressions. We also can't mix property
   binding with string interpolation - they work separatly but not one in another.
 -->
-<button class="btn btn-primary" [disabled]="!addNewServerAllowed">
+<!--
+  onclick="" typical  attributee on the HTML element but in angular we use our own syntaxis for events binding
+  (any html event without on) = "typescript - usually method"
+-->
+<button
+  class="btn btn-primary"
+  [disabled]="!addNewServerAllowed"
+  (click)="onServerCreation()"
+>
   Add server
 </button>
 <p>{{ addNewServerAllowed }}</p>
+<p>{{ serverCreation }}</p>
