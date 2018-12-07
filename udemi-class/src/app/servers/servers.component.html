@@ -33,3 +33,6 @@
 </button>
 <p>{{ addNewServerAllowed }}</p>
 <p>{{ serverCreation }}</p>
+<label>Server name</label>
+<input type="text" class="form-control" (input)="onUpdateServerName($event)">
+<p> {{serverName}} </p>

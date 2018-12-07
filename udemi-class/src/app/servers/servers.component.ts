@@ -15,9 +15,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./servers.component.css']
 })
 export class ServersComponent implements OnInit {
-
   addNewServerAllowed = false;
   serverCreation = 'No Server Was created!';
+  serverName = '';
 
   // constructor is method executed at time of component created by the angular
   constructor() {
@@ -25,15 +25,19 @@ export class ServersComponent implements OnInit {
     // since ES6 instead of function() {} we can type () => {}. And note this will now work in function() sintacsis
     setTimeout(() => {
       this.addNewServerAllowed = true;
-    },
-      3000);
+    }, 3000);
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   onServerCreation() {
     this.serverCreation = 'Server was Created!';
   }
 
+  onUpdateServerName(event: any) {
+    console.log(event);
+    this.serverName = event.target.value; // target is html element the event was triggered on
+    // sometimes you need to casting of elements and it is done like below
+    // (<HTMLInputElement> event.target).value;
+  }
 }
