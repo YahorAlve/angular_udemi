@@ -34,5 +34,13 @@
 <p>{{ addNewServerAllowed }}</p>
 <p>{{ serverCreation }}</p>
 <label>Server name</label>
-<input type="text" class="form-control" (input)="onUpdateServerName($event)">
-<p> {{serverName}} </p>
+<!-- way to bind data through regular event binding -->
+
+<input type="text" class="form-control" (input)="onUpdateServerName($event)" />
+
+<!--
+  below is differnt way to bind data throug 2 way binding. ngModule is taken from FormsModule injected in app.module.ts
+  attention : it works in both way when we change input and when code change data in component
+-->
+<input type="text" class="form-control" [(ngModel)]="serverName" />
+<p>{{ serverName }}</p>
