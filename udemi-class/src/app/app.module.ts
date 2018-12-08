@@ -10,6 +10,7 @@ import { ServerComponent } from './server/server.component';
 import { ServersComponent } from './servers/servers.component';
 import { WarningAlertComponent } from './warning-alert/warning-alert.component';
 import { SuccessAlertComponent } from './success-alert/success-alert.component';
+import { UserComponent } from './user/user.component';
 
 // Module is passed to bootstrap as an argument and looks like configuration which angular analizes to start and work with app
 // Usually only oine module exist but in big projects could be more then one
@@ -20,7 +21,8 @@ import { SuccessAlertComponent } from './success-alert/success-alert.component';
     ServerComponent,
     ServersComponent,
     WarningAlertComponent,
-    SuccessAlertComponent
+    SuccessAlertComponent,
+    UserComponent
   ],
   // this one imports it is for angular to know what other modules to import
   imports: [
