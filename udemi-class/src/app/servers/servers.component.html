@@ -44,3 +44,15 @@
 -->
 <input type="text" class="form-control" [(ngModel)]="serverName" />
 <p>{{ serverName }}</p>
+
+<!-- bellow is practice for directives, * is added for structural changes of our dom - means that it is whether added 
+  or excluded from structure -->
+<p *ngIf="serverCreated">Server name is {{serverName}} </p>
+
+<!-- Example with else if trhough template -->
+<p *ngIf="serverCreated; else elseTemplate">
+  Server name is {{serverName}} 
+</p>
+<ng-template #elseTemplate>
+  <p>There was no server created</p>
+</ng-template>
