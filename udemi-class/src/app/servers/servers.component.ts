@@ -19,6 +19,7 @@ export class ServersComponent implements OnInit {
   serverCreation = 'No Server Was created!';
   serverName = 'TestServer';
   serverCreated = false;
+  servers = ['Server 1', 'Server 2'];
 
   // constructor is method executed at time of component created by the angular
   constructor() {
@@ -33,6 +34,7 @@ export class ServersComponent implements OnInit {
 
   onServerCreation() {
     this.serverCreated = true;
+    this.servers.push(this.serverName);
     this.serverCreation = 'Server was Created! Name is ' + this.serverName;
   }
 
