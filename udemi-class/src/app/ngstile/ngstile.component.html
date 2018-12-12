@@ -7,3 +7,7 @@
 <ol>
   <li *ngFor="let item of items" [ngStyle]="{backgroundColor: item > 4 ? 'blue' : 'transparent'}" [ngClass]="{'text': item > 4}">Item was added {{ item }} and total items {{items}} will be growing as ngFor will add only new row and leave untouched previously showed ones</li>
 </ol>
+<p>Below it is with Data example</p>
+<ol>
+  <li *ngFor="let date of dates; let i = index" [ngStyle]="{backgroundColor: i > 3 ? 'blue' : 'transparent'}" [ngClass]="{'text': i > 3}">Item was added {{ date }}</li>
+</ol>

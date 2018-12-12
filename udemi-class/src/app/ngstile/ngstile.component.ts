@@ -10,6 +10,7 @@ export class NgstileComponent implements OnInit {
   displayText = false;
   increment = 0;
   items = [];
+  dates = [];
 
   constructor() { }
 
@@ -20,9 +21,7 @@ export class NgstileComponent implements OnInit {
     this.displayText = !this.displayText;
     this.increment++;
     this.items.push(this.increment);
+    this.dates.push(new Date());
   }
 
-  getColor() {
-    return ;
-  }
 }
