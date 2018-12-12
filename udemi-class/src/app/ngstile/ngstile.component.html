@@ -1,0 +1,9 @@
+<!--
+  <button class="btn btn-primary" (click)="displayText = !displayText">Display Details</button>
+-->
+<button class="btn btn-primary" (click)="onClick()">Display Details</button>
+
+<p *ngIf="displayText">I am toggeling after you click on Display details</p>
+<ol>
+  <li *ngFor="let item of items" [ngStyle]="{backgroundColor: item > 4 ? 'blue' : 'transparent'}" [ngClass]="{'text': item > 4}">Item was added {{ item }} and total items {{items}} will be growing as ngFor will add only new row and leave untouched previously showed ones</li>
+</ol>
