@@ -7,5 +7,16 @@ p _ngcontent-c0 {
   }
 */
 p {
+  color: blue;
+}
+/* 
+So after introducing viewEncapsulation.None it will aply to label HTML components and all labels globally will get this property.
+With default Emulated mode this would have property like shown above :
+p _ngcontent-c0 {
     color: blue;
   }
+w/o it is is just pure CSS option like below:
+*/
+label {
+  color: red;
+}
