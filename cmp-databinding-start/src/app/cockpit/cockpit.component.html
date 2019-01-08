@@ -2,15 +2,20 @@
   <div class="col-xs-12">
     <p>Add new Servers or blueprints!</p>
     <label>Server Name</label>
-    <input type="text" class="form-control" [(ngModel)]="newServerName">
+    <!-- <input type="text" class="form-control" [(ngModel)]="newServerName"> -->
+    <!-- Local reference to whole HTML elment with all its properties can be done with #Name but ONLY IN HTML Template 
+         Then we can pass them as an argument below in HTML or Methods. But again it is an HTML Element will pass down to the code level 
+         as an argument.
+    -->
+    <input type="text" class="form-control" #serverNameElement />
     <label>Server Content</label>
-    <input type="text" class="form-control" [(ngModel)]="newServerContent">
-    <br>
-    <button
-      class="btn btn-primary"
-      (click)="onAddServer()">Add Server</button>
-    <button
-      class="btn btn-primary"
-      (click)="onAddBlueprint()">Add Server Blueprint</button>
+    <input type="text" class="form-control" [(ngModel)]="newServerContent" />
+    <br />
+    <button class="btn btn-primary" (click)="onAddServer(serverNameElement)">
+      Add Server
+    </button>
+    <button class="btn btn-primary" (click)="onAddBlueprint(serverNameElement)">
+      Add Server Blueprint
+    </button>
   </div>
 </div>
