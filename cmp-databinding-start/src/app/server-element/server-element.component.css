@@ -1,0 +1,11 @@
+/* We need to aply css options at component level - it will apply only at component scope (even if we put in app main css 
+it won't apply to other components. Usually CSS applies to all elements by browser but angular creates uniuqe attribte for 
+each component _ngcontent-c0 (_ngcontent-c1 and so on) and then that CSS aplies to that specific element with this HTML tag - so 
+it is just feature of angular - it rewrites common/global CSS for this specific html elemtn e.g. :
+p _ngcontent-c0 {
+    color: blue;
+  }
+*/
+p {
+    color: blue;
+  }
