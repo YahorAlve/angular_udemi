@@ -9,7 +9,18 @@
       <app-server-element
         *ngFor="let serverElement of serverElements"
         [srvElement]="serverElement"
-      ></app-server-element>
+      >
+       <!-- By default angular throws everything out what is placed in between of angular component HTML 
+            Tag (app-server-elment). But if we add ng-content tag html in corresponding component's (here is app-server-element)
+            template - the additional content will be injected in that tag. 
+        -->
+       <p>
+          <strong *ngIf="serverElement.type === 'server'" style="color: red">{{
+              serverElement.content
+          }}</strong>
+          <em *ngIf="serverElement.type === 'blueprint'">{{ serverElement.content }}</em>
+        </p>
+      </app-server-element>
     </div>
   </div>
 </div>
