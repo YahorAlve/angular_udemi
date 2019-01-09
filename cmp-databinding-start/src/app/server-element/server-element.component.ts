@@ -10,7 +10,9 @@ import {
   AfterContentChecked,
   AfterViewInit,
   AfterViewChecked,
-  OnDestroy
+  OnDestroy,
+  ViewChild,
+  ElementRef
 } from '@angular/core';
 @Component({
   selector: 'app-server-element',
@@ -25,8 +27,9 @@ export class ServerElementComponent
   implements OnInit, OnChanges, DoCheck,
   AfterContentInit, AfterContentChecked,
   AfterViewInit, AfterViewChecked, OnDestroy {
-  @Input("srvElement") element: { name: string; type: string; content: string };
+  @Input('srvElement') element: { name: string; type: string; content: string };
   @Input() elementName: string;
+  @ViewChild('heading') header: ElementRef;
 
   constructor() {
     console.log('Constructor called');
@@ -41,6 +44,9 @@ export class ServerElementComponent
 
   ngOnInit() {
     console.log('ngOnInit called');
+    // if we call header.text before ngAfterViewInit no text will be presented as at this moment no view of component
+    // was initialized and as result no text is in HTML element yet.
+    console.log('Text Content: ' + this.header.nativeElement.textContent);
   }
 
   ngDoCheck(): void {
@@ -68,6 +74,8 @@ export class ServerElementComponent
     // Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
     // Add 'implements AfterViewInit' to the class.
     console.log('ngAfterViewInit called');
+    // But if we call it here it will have value as View of Component was just initialized
+    console.log('Text Content: ' + this.header.nativeElement.textContent);
   }
 
   ngAfterViewChecked(): void {
