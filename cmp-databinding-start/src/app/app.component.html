@@ -6,9 +6,12 @@
   <hr />
   <div class="row">
     <div class="col-xs-12">
+      <button class="btn btn-primary" (click)="onFirstChange()">Change First Element</button>
+      <button class="btn btn-danger" (click)="onDestroyFirst()">Destroy First Element</button>
       <app-server-element
         *ngFor="let serverElement of serverElements"
         [srvElement]="serverElement"
+        [elementName]="serverElement.name"
       >
        <!-- By default angular throws everything out what is placed in between of angular component HTML 
             Tag (app-server-elment). But if we add ng-content tag html in corresponding component's (here is app-server-element)
