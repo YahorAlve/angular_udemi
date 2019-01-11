@@ -16,7 +16,9 @@ export class ShoppingEditComponent implements OnInit {
   }
 
   onSubmit(nameInput: HTMLInputElement, amountInput: HTMLInputElement) {
-    this.submitNewIngredient.emit(new IngredientModule(nameInput.value, +amountInput.value));
+    // diff between const and let that const can be assigned only one and can't be re-assigned, let - can be
+    const ingredient = new IngredientModule(nameInput.value, +amountInput.value);
+    this.submitNewIngredient.emit(ingredient);
   }
 
 }
