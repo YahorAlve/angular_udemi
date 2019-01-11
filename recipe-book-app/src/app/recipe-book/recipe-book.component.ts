@@ -8,11 +8,7 @@ import { Recipe } from './recipe.module';
 })
 export class RecipeBookComponent implements OnInit {
 
-currentRecipe: Recipe = new Recipe(
-    '',
-    '',
-    ''
-  );
+currentRecipe: Recipe;
 
   constructor() { }
 
