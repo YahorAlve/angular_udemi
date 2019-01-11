@@ -1,0 +1,18 @@
+<div class="container">
+  <hr />
+  <div class="row">
+    <div class="col-xs-12">
+      <!--  Here are very important things I get only after practical task. We can listen for Output event 
+            only from Parent component (e.g. here game-parent is parent for app-game-control) and put this event
+            binding only in selector which component generates event. For instnce if we put this (numberGeneratedEvent)
+            in app-odd nothing will happen. -->
+      <app-game-control
+        (numberGeneratedEvent)="checkNumber($event)"
+      ></app-game-control>
+      <!--  Meanwhile for Input binding we can do only through parent to child relation like here from game-parent
+            to app-odd component. We can't do it from siblings like game-controler to app-odd -->
+      <app-odd *ngFor="let number of oddNumbers" [number]="number"></app-odd>
+      <app-even *ngFor="let number of evenNumbers" [number]="number"></app-even>
+    </div>
+  </div>
+</div>
