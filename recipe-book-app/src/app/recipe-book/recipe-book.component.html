@@ -1,8 +1,15 @@
 <div class="row">
   <div class="col-md-5">
-      <app-recipe-list></app-recipe-list>
+    <!-- I was struggeleing here because i though event emitted could be cought by any grandparent like e.g. here 
+      recipe-book -> parent to app-recipe-list -> parent to recipe-item
+      <app-recipe-list (recipeWasChosen) = "changeCurrentRecipe($event)"></app-recipe-list> 
+      But it doesn't work like that. Event can be caught only from direct parent on elment(component) which throws it. 
+      So as result to pass it up to the stack to next parent we need to generate another one event from parent of intial 
+      component and child to parent. 
+    -->
+      <app-recipe-list (recipeDetails) = "currentRecipe = $event"></app-recipe-list>
   </div>
   <div class="col-md-7">
-    <app-recipe-details></app-recipe-details>
+    <app-recipe-details [chosenRecipe] = "currentRecipe"></app-recipe-details>
   </div>
 </div>
