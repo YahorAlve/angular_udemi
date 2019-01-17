@@ -1,4 +1,4 @@
-import { Directive, Renderer2, OnInit, ElementRef } from '@angular/core';
+import { Directive, Renderer2, OnInit, ElementRef, HostListener } from '@angular/core';
 
 @Directive({
   selector: '[appBetterHighlight]'
@@ -14,6 +14,15 @@ export class BetterHighlightDirective implements OnInit {
     so this rendere will manage it. WE should use the Renderer for any DOM manipulations. 
   */
   ngOnInit(): void {
+    // this.renderer.setStyle(this.elementRef.nativeElement, 'background-color', 'blue');
+  }
+
+  // mouseenter is name of event supported by dom, we still can use old approach described before (event)="method($event)"
+  @HostListener('mouseenter') mousehoover(event: Event) {
     this.renderer.setStyle(this.elementRef.nativeElement, 'background-color', 'blue');
+  }
+
+  @HostListener('mouseleave') mousehooverLeave(event: Event) {
+    this.renderer.setStyle(this.elementRef.nativeElement, 'background-color', 'transparent');
   }
 }
