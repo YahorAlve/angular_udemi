@@ -9,13 +9,20 @@
         <!-- WE can't use 2 structural directives in one element that is why we introduce new wrapper element -->
         <div *ngIf="onlyOdd">
           <li
-            class="list-group-item" *ngFor="let item of oddNumbers">
+            class="list-group-item" 
+            [ngClass]="{'odd': item % 2 !== 0}"
+            [ngStyle]="{'backgroundColor': item % 2 !== 0 ? 'yellow' : 'transparent'}" 
+            *ngFor="let item of oddNumbers">
+
             {{ item }}
           </li>
         </div>
         <div *ngIf="!onlyOdd">
             <li
-              class="list-group-item" *ngFor="let item of evenNumbers">
+              class="list-group-item" 
+              [ngClass]="{'odd': item % 2 !== 0}" 
+              [ngStyle]="{'backgroundColor': item % 2 !== 0 ? 'yellow' : 'transparent'}"
+              *ngFor="let item of evenNumbers">
               {{ item }}
             </li>
           </div>
