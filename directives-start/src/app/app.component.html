@@ -1,59 +1,72 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12">
-      <button
-        class="btn btn-primary"
-        (click)="onlyOdd = !onlyOdd">Only show odd numbers</button>
-      <br><br>
+      <button class="btn btn-primary" (click)="onlyOdd = !onlyOdd">
+        Only show odd numbers
+      </button>
+      <br /><br />
       <ul class="list-group">
         <!-- WE can't use 2 structural directives in one element that is why we introduce new wrapper element -->
         <!-- There is no * operator in angular and behind the scene it is each time just create new wrapper element
            ng-tepmplate for each structural *ng directive and put there conditions whether to show it or not e.g. 
            And doing property binding now for ngIf (it is property now in ngIf directive) 
-           <mg-template [ngIf]="onlyOdd">
+           <ng-template [ngIf]="onlyOdd">
              <div>...
                ...
         -->
         <div *ngIf="onlyOdd">
           <li
-            class="list-group-item" 
-            [ngClass]="{'odd': item % 2 !== 0}"
-            [ngStyle]="{'backgroundColor': item % 2 !== 0 ? 'yellow' : 'transparent'}" 
-            *ngFor="let item of oddNumbers">
-
+            class="list-group-item"
+            [ngClass]="{ odd: item % 2 !== 0 }"
+            [ngStyle]="{
+              backgroundColor: item % 2 !== 0 ? 'yellow' : 'transparent'
+            }"
+            *ngFor="let item of oddNumbers"
+          >
             {{ item }}
           </li>
         </div>
         <div *appUnless="!onlyOdd">
-            <li
-              class="list-group-item" 
-              [ngClass]="{'odd': item % 2 !== 0}"
-              [ngStyle]="{'backgroundColor': item % 2 !== 0 ? 'yellow' : 'transparent'}" 
-              *ngFor="let item of oddNumbers">
-  
-              {{ item }}
-            </li>
-          </div>
+          <li
+            class="list-group-item"
+            [ngClass]="{ odd: item % 2 !== 0 }"
+            [ngStyle]="{
+              backgroundColor: item % 2 !== 0 ? 'yellow' : 'transparent'
+            }"
+            *ngFor="let item of oddNumbers"
+          >
+            {{ item }}
+          </li>
+        </div>
         <div *ngIf="!onlyOdd">
-            <li
-              class="list-group-item" 
-              [ngClass]="{'odd': item % 2 !== 0}" 
-              [ngStyle]="{'backgroundColor': item % 2 !== 0 ? 'yellow' : 'transparent'}"
-              *ngFor="let item of evenNumbers">
-              {{ item }}
-            </li>
-          </div>
+          <li
+            class="list-group-item"
+            [ngClass]="{ odd: item % 2 !== 0 }"
+            [ngStyle]="{
+              backgroundColor: item % 2 !== 0 ? 'yellow' : 'transparent'
+            }"
+            *ngFor="let item of evenNumbers"
+          >
+            {{ item }}
+          </li>
+        </div>
       </ul>
-      <ng-template [ngIf]="onlyOdd">
-        <p>Only odd</p>
-      </ng-template>
+      <ng-template [ngIf]="onlyOdd"> <p>Only odd</p> </ng-template>
       <!-- We don't need []  on name of directive-->
       <p appBasicHighlight>Plesae highlight me through basic directive</p>
       <!-- Smt we can see smth like this [appBetterHighlight] = "'red'" in case property has same name 
         like selector and it will still work. Also only in case we bind direct property to string we can type like
         highlightColor = "red"
       -->
-      <p appBetterHighlight [defaultColor]="'yellow'" [highlightColor]="'red'">Plesae highlight me through better directive</p>
+      <p appBetterHighlight [defaultColor]="'yellow'" [highlightColor]="'red'">
+        Plesae highlight me through better directive
+      </p>
+      <div [ngSwitch]="value">
+        <p *ngSwitchCase="5">Value is 5</p>
+        <p *ngSwitchCase="10">Value is 10</p>
+        <p *ngSwitchCase="100">Value is 100</p>
+        <p *ngSwitchDefault>Value is Default</p>
+      </div>
     </div>
   </div>
 </div>
