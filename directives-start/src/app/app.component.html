@@ -32,7 +32,11 @@
       </ng-template>
       <!-- We don't need []  on name of directive-->
       <p appBasicHighlight>Plesae highlight me through basic directive</p>
-      <p appBetterHighlight>Plesae highlight me through better directive</p>
+      <!-- Smt we can see smth like this [appBetterHighlight] = "'red'" in case property has same name 
+        like selector and it will still work. Also only in case we bind direct property to string we can type like
+        highlightColor = "red"
+      -->
+      <p appBetterHighlight [defaultColor]="'yellow'" [highlightColor]="'red'">Plesae highlight me through better directive</p>
     </div>
   </div>
 </div>
