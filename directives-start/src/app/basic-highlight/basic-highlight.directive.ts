@@ -10,6 +10,8 @@ export class BasicHighlightDirective implements OnInit {
   constructor(private elementRef: ElementRef) {}
 
   // That is not the best way to change styles through direct access to native element but just for example was implemented here
+  // Lector mentioned that smt angular can build templates w/o using doms or any other advancced stuff can happen that is why 
+  // it is not the best way to use direct access to element
   // for some reason onInit is better place to make an operations on element where directive was placed on
   ngOnInit(): void {
     // Called after the constructor, initializing input properties, and the first call to ngOnChanges.
