@@ -7,6 +7,13 @@
       <br><br>
       <ul class="list-group">
         <!-- WE can't use 2 structural directives in one element that is why we introduce new wrapper element -->
+        <!-- There is no * operator in angular and behind the scene it is each time just create new wrapper element
+           ng-tepmplate for each structural *ng directive and put there conditions whether to show it or not e.g. 
+           And doing property binding now for ngIf (it is property now in ngIf directive) 
+           <mg-template [ngIf]="onlyOdd">
+             <div>...
+               ...
+        -->
         <div *ngIf="onlyOdd">
           <li
             class="list-group-item" 
@@ -17,6 +24,16 @@
             {{ item }}
           </li>
         </div>
+        <div *appUnless="!onlyOdd">
+            <li
+              class="list-group-item" 
+              [ngClass]="{'odd': item % 2 !== 0}"
+              [ngStyle]="{'backgroundColor': item % 2 !== 0 ? 'yellow' : 'transparent'}" 
+              *ngFor="let item of oddNumbers">
+  
+              {{ item }}
+            </li>
+          </div>
         <div *ngIf="!onlyOdd">
             <li
               class="list-group-item" 
