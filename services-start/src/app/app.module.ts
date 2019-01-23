@@ -6,6 +6,7 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { AccountComponent } from './account/account.component';
 import { NewAccountComponent } from './new-account/new-account.component';
+import { LoggingService } from './logging.service';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,11 @@ import { NewAccountComponent } from './new-account/new-account.component';
     FormsModule,
     HttpModule
   ],
-  providers: [],
+  /*
+  When we add service at AppModule level it (same instance) gets available for each place in angular app - even for other services
+  It is not posible (injection the service into other services) when we declare provider in AppComponent or any other component
+  */
+  providers: [LoggingService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
