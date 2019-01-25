@@ -16,7 +16,11 @@ export class NewAccountComponent {
 
   // right way to inject services into componenet through constructor - ang will take care for injecting the service
   constructor(// private log: LoggingService,
-              private accountService: AccountService) {}
+              private accountService: AccountService) {
+                this.accountService.statusUpdated.subscribe(
+                  (status: string) => alert('New Status: ' + status)
+                );
+              }
 
   onCreateAccount(accountName: string, accountStatus: string) {
     // this.log.logStatusChanged(accountStatus);
