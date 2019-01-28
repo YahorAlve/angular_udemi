@@ -22,7 +22,9 @@ import { CounterService } from './counter.service';
     FormsModule,
     HttpModule
   ],
-  providers: [UsersService, CounterService],
+  // since angular 6 we can declare providers differenly if we want them(same instance) available through out the application
+  // @Injectable({providedIn: 'root'}) we need to place above service name
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
