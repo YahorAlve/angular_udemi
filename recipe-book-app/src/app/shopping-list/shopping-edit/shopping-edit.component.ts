@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { IngredientModule } from 'src/app/shared/ingredient/ingredient.module';
+import { ShoppinListService } from '../shoppin-list.service';
 
 @Component({
   selector: 'app-shopping-edit',
@@ -8,17 +9,15 @@ import { IngredientModule } from 'src/app/shared/ingredient/ingredient.module';
 })
 export class ShoppingEditComponent implements OnInit {
 
-  @Output() submitNewIngredient = new EventEmitter<IngredientModule>();
-
-  constructor() { }
+  constructor(private shoppingListService: ShoppinListService) { }
 
   ngOnInit() {
   }
 
   onSubmit(nameInput: HTMLInputElement, amountInput: HTMLInputElement) {
     // diff between const and let that const can be assigned only one and can't be re-assigned, let - can be
-    const ingredient = new IngredientModule(nameInput.value, +amountInput.value);
-    this.submitNewIngredient.emit(ingredient);
+    // const ingredient = new IngredientModule(nameInput.value, +amountInput.value);
+    this.shoppingListService.addNewIngredient(new IngredientModule(nameInput.value, +amountInput.value));
   }
 
 }
