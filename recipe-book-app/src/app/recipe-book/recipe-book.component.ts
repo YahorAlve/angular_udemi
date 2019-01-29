@@ -12,9 +12,15 @@ export class RecipeBookComponent implements OnInit {
 
 currentRecipe: Recipe;
 
-  constructor() { }
+  constructor(private recipeService: RecipeService) { }
 
   ngOnInit() {
+    this.recipeService.recipeChosen.subscribe(
+      // JavaScript ES6 syntax (Parametrs of function - (name: type), {function which will use parametrs})
+      (recipe: Recipe) => {
+        this.currentRecipe = recipe;
+      }
+    );
   }
 
 }

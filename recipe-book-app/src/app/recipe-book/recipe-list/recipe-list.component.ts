@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { Recipe } from '../recipe.module';
 import { RecipeService } from '../recipe.service';
 @Component({
@@ -8,7 +8,6 @@ import { RecipeService } from '../recipe.service';
 })
 export class RecipeListComponent implements OnInit {
 
-  @Output() recipeDetails = new EventEmitter<Recipe>();
   // assing array type to property for typescript we can by name: type[]
   recipes: Recipe[];
 
@@ -19,8 +18,4 @@ export class RecipeListComponent implements OnInit {
     this.recipes = this.recipeService.getRecipes();
   }
 
-  onSelectedRecipe(recipe: Recipe) {
-    console.log('Change current Recipe : ' + recipe.name);
-    this.recipeDetails.emit(recipe);
-  }
 }

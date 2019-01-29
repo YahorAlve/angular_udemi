@@ -7,7 +7,7 @@
       So as result to pass it up to the stack to next parent we need to generate another one event from parent of intial 
       component and child to parent. 
     -->
-      <app-recipe-list (recipeDetails) = "currentRecipe = $event"></app-recipe-list>
+      <app-recipe-list></app-recipe-list>
   </div>
   <div class="col-md-7">
     <app-recipe-details *ngIf="currentRecipe; else infotext" [chosenRecipe] = "currentRecipe"></app-recipe-details>
