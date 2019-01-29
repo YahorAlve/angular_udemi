@@ -1,5 +1,6 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { Recipe } from './recipe.module';
+import { IngredientModule } from '../shared/ingredient/ingredient.module';
 
 @Injectable()
 export class RecipeService {
@@ -10,12 +11,14 @@ export class RecipeService {
     new Recipe(
       'Test Name 1',
       'Test Description 1',
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Recipe-575434.svg/155px-Recipe-575434.svg.png'
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Recipe-575434.svg/155px-Recipe-575434.svg.png',
+      [new IngredientModule('Meat', 2), new IngredientModule('Bread', 2)]
     ),
     new Recipe(
       'Test Name 2',
       'Test Description 2',
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Recipe-575434.svg/155px-Recipe-575434.svg.png'
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Recipe-575434.svg/155px-Recipe-575434.svg.png',
+      [new IngredientModule('Meat', 5), new IngredientModule('Bread', 5)]
     )
   ];
 
