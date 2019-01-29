@@ -6,6 +6,9 @@ import { ShoppinListService } from './shoppin-list.service';
   selector: 'app-shopping-list',
   templateUrl: './shopping-list.component.html',
   styleUrls: ['./shopping-list.component.css'],
+  // looks if we inject service for component it gets reloaded with componet eaach time and just looisng data
+  // Ingredients array. If we boot it in APpModule (in root) - it keeps all data
+  // providers:[ShoppingListComponent]
 })
 export class ShoppingListComponent implements OnInit {
 
