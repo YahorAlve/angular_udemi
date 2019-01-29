@@ -28,7 +28,9 @@ export class ShoppinListService {
   addNewIngredients(newIngredients: IngredientModule[]) {
     // this.ingredients.concat creates new array that is why we need to assign it to our this.ingredients to re-point it
     // to new updated array
-    this.ingredients = this.ingredients.concat(newIngredients);
+    // this.ingredients = this.ingredients.concat(newIngredients);
+    /* it is a ES6 feature called spread operator ... by this we convert array  to list */
+    this.ingredients.push(...newIngredients);
     console.log('Ingredients were added ' + newIngredients);
     this.ingredientsChanged.emit(this.ingredients.slice());
   }
