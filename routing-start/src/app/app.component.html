@@ -10,7 +10,15 @@
         <!-- <li role="presentation"><a href="/servers">Servers</a></li> -->
         <!-- routerLink intercepts when we click on element and override default behaviour of a link to reload the page, 
         instead it parse and try to find a match in application routers to redirect to the component w/o reloading -->
-        <li role="presentation" class="active"><a routerLink="/">Home</a></li>
+        <!-- By default routerLinkActive='active' check for contains routerLink what means /servers contains / so
+             as result it will be active always. But we can use directive through the property binding (so be able to provide
+             json there not just string - everything what can be processed dynamically) 
+             exact:true and the it will check for equals not contains so /servers won't be equal to / 
+        -->
+        <li role="presentation"
+            routerLinkActive='active'
+            [routerLinkActiveOptions]="{exact:true}"
+        ><a routerLink="/">Home</a></li>
         <!-- 
           We can put down routerLink="servers" but w/o starting slash it is going to be relative pass (with slash absolute)
           so this relative path will work fine because it is placed in root component and this component has locolhost:4200
@@ -21,8 +29,8 @@
           We can also use ./servers what is equal relative path 'servers'.
           We can also use ../servers what mean go back one level of path and apply servers, and so on ../../servers      
         -->
-        <li role="presentation"><a routerLink="/servers">Servers</a></li>
-        <li role="presentation"><a [routerLink]="[ '/users']">Users</a></li>
+        <li role="presentation" routerLinkActive='active'><a routerLink="/servers">Servers</a></li>
+        <li role="presentation" routerLinkActive='active'><a [routerLink]="[ '/users']">Users</a></li>
       </ul>
     </div>
   </div>
