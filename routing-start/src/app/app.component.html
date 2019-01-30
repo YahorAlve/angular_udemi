@@ -2,9 +2,17 @@
   <div class="row">
     <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
       <ul class="nav nav-tabs">
-        <li role="presentation" class="active"><a href="#">Home</a></li>
-        <li role="presentation"><a href="#">Servers</a></li>
-        <li role="presentation"><a href="#">Users</a></li>
+        <!-- 
+          With each a href link clicked default behaviour is reload an app what as result lead to lost of 
+          application state and data (in ui). It is expected but often not behaiour we need. So it is better 
+          to use routerLink which will anylized by angular and hnadled differently.
+        -->
+        <!-- <li role="presentation"><a href="/servers">Servers</a></li> -->
+        <!-- routerLink intercepts when we click on element and override default behaviour of a link to reload the page, 
+        instead it parse and try to find a match in application routers to redirect to the component w/o reloading -->
+        <li role="presentation" class="active"><a routerLink="/">Home</a></li>
+        <li role="presentation"><a routerLink="/servers">Servers</a></li>
+        <li role="presentation"><a [routerLink]="[ '/users']">Users</a></li>
       </ul>
     </div>
   </div>
