@@ -17,12 +17,14 @@ const appRoutes: Routes = [
   // we need to give json (java script object) which has path and component(kinda page now) aplication should
   // redirect to. So we need to keepin mind that component should have evrething we want to show in new page
   // that is for locolhost:4200/users
-  {path: 'users', component: UsersComponent},
   // 'users/:id' :id means anything in url after users/ will be considered like and id /users/something - something is id
-  {path: 'users/:id/:name', component: UserComponent},
-  {path: 'servers', component: ServersComponent},
-  {path: 'servers/:id', component: ServerComponent},
-  {path: 'servers/:id/edit', component: EditServerComponent},
+  {path: 'users', component: UsersComponent, children: [
+    {path: ':id/:name', component: UserComponent}
+  ]},
+  {path: 'servers', component: ServersComponent, children: [
+    {path: ':id', component: ServerComponent},
+    {path: ':id/edit', component: EditServerComponent}
+  ]},
   {path: '', component: HomeComponent}
 ];
 

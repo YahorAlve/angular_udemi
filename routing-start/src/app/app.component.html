@@ -36,6 +36,10 @@
   </div>
   <div class="row">
     <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <!-- This is the main router-outlet which will load all main top level routs listed in app.module
+           It won't load their children though. For this we need to add router-outlets in Parent component for
+           its children to be shown 
+      -->
       <router-outlet></router-outlet>
     </div>
   </div>
