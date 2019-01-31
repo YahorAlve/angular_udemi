@@ -13,9 +13,12 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
   }
 
-  onServerAdded() {
+  // this will build http://localhost:4200/servers/1/edit?allowEdit=1#loading url, now it is a bit more dynamically cause
+  // we can pass id in url. ANd also it will still map it to Edit server component as this full url contains route calimed 
+  // in app module servers/:id/edit
+  onServerAdded(id: number) {
     // some logic
-    this.router.navigate(['/servers']);
+    this.router.navigate(['/servers', id, 'edit'], {queryParams : {allowEdit : '1'}, fragment : 'loading'});
   }
 
 }
