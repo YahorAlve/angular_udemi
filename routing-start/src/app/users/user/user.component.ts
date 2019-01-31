@@ -1,13 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
+// this rxjs it is a third party library angular use for observables
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.css']
 })
-export class UserComponent implements OnInit {
+export class UserComponent implements OnInit, OnDestroy {
   user: {id: number, name: string};
+  paramsSubscription: Subscription;
 
   constructor(private route: ActivatedRoute) { }
 
@@ -24,12 +27,21 @@ export class UserComponent implements OnInit {
         id: this.route.snapshot.params['id'],
         name: this.route.snapshot.params['name']
     };
-    this.route.params.subscribe(
+    this.paramsSubscription = this.route.params.subscribe(
       (params: Params) => {
         this.user.id = params['id'];
         this.user.name = params['name'];
       }
     );
+  }
+
+  /* By default angular will destroy any subscription for component when we leave the component (during onDestroy phase)
+     And this is great cause if it doesnt it would lead to issues as aobservables would try to call some code for components
+     which doesn't exist anymore - leaks. But just if we want to do it by ourself (e.g. we created our own observable angular 
+    is not aware of) here is an example.
+  */
+  ngOnDestroy(): void {
+    this.paramsSubscription.unsubscribe();
   }
 
 }
