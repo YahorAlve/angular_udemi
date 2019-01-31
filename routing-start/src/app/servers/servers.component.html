@@ -4,7 +4,7 @@
       <!-- All this routerLink directives will build the next url : 
         http://localhost:4200/servers/5/edit?undefined=1&allowEdit=2#loading -->
       <a
-        [routerLink]= "[ '/servers', 5, 'edit' ]"
+        [routerLink]="[ '/servers', server.id ]"
         [queryParams] = "{ allowEdit : 1, allowEdit : 2 }"
         [fragment] = "'loading'"
         href="#"
@@ -18,7 +18,8 @@
     <button class="btn btn-primary" (click)="onReload()">Reload Page</button>
     <app-edit-server></app-edit-server>
     <hr>
-    <app-server></app-server>
+    <!-- We need to comment it as it will try to load this component each time when there is no params in url-->
+    <!-- <app-server></app-server> -->
   </div>
 </div>
 

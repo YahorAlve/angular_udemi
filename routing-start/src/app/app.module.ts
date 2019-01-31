@@ -21,6 +21,7 @@ const appRoutes: Routes = [
   // 'users/:id' :id means anything in url after users/ will be considered like and id /users/something - something is id
   {path: 'users/:id/:name', component: UserComponent},
   {path: 'servers', component: ServersComponent},
+  {path: 'servers/:id', component: ServerComponent},
   {path: 'servers/:id/edit', component: EditServerComponent},
   {path: '', component: HomeComponent}
 ];
