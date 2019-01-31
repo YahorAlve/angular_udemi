@@ -18,8 +18,10 @@ const appRoutes: Routes = [
   // redirect to. So we need to keepin mind that component should have evrething we want to show in new page
   // that is for locolhost:4200/users
   {path: 'users', component: UsersComponent},
-  {path: '', component: HomeComponent},
-  {path: 'servers', component: ServersComponent}
+  // 'users/:id' :id means anything in url after users/ will be considered like and id /users/something - something is id
+  {path: 'users/:id/:name', component: UserComponent},
+  {path: 'servers', component: ServersComponent},
+  {path: '', component: HomeComponent}
 ];
 
 @NgModule({
