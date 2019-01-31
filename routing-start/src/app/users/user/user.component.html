@@ -1,2 +1,15 @@
 <p>User with ID {{ user.id }} loaded.</p>
 <p>User name is {{ user.name }}</p>
+<hr>
+<!-- It will build path /users/10/Anna -->
+
+<!-- If we click this link url will be updated but component not. And that is default angular behavior. Angular 
+     reloads component only if we comming to them outside, if we are trying to come to component from component
+     itself angular won't reload it. Cause if it did it would cause performance - why do we need to reload it if
+     it is already loaded. By default angular takes url goes to Routes in appModule find what component should be 
+     rendered and onInit should be launched and if it is already on this component cleverly just skip initialization
+     But it because we used id: this.route.snapshot.params['id'] what is ok for initialization but if we want 
+     component to update each time with new url we need to subscribe to event (params) - observeable like we 
+     did in user.component in this commit.
+ -->
+<a [routerLink]="[ '/users', 10, 'Anna' ]">Load Anna (10)</a> 
