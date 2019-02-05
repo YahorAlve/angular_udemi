@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { ServersService } from '../servers.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-edit-server',
@@ -12,6 +12,7 @@ export class EditServerComponent implements OnInit {
   server: {id: number, name: string, status: string};
   serverName = '';
   serverStatus = '';
+  allowEdit = false;
 
   constructor(private serversService: ServersService,
               private route: ActivatedRoute) { }
@@ -22,9 +23,17 @@ export class EditServerComponent implements OnInit {
     console.log(this.route.snapshot.fragment);
     // if we want to have it updated each time url changed even when we do it from initialized component itself
     // we need to subscribe to obsevable (event)
-    this.route.queryParams.subscribe();
+    this.route.queryParams.subscribe(
+      (queryParams: Params) => {
+        this.allowEdit = queryParams['allowEdit'] === '1' ? true : false;
+      }
+    );
     this.route.fragment.subscribe();
-    this.server = this.serversService.getServer(1);
+    this.route.params.subscribe(
+      (params: Params) => {
+        this.server = this.serversService.getServer(+params['id']);
+      }
+    );
     this.serverName = this.server.name;
     this.serverStatus = this.server.status;
   }
