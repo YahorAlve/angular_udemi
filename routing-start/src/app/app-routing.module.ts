@@ -18,7 +18,13 @@ const appRoutes: Routes = [
   {path: 'users', component: UsersComponent, children: [
     {path: ':id/:name', component: UserComponent}
   ]},
-  {path: 'servers', canActivate: [AuthGuardService], component: ServersComponent, children: [
+  {path: 'servers',
+      // canActivate: [AuthGuardService],
+      component: ServersComponent,
+      // sometimes we want activate guard only for children and we can do it by adding to each child canActiveate
+      // what is not the best way to do, or by adding property canActivateChild
+      canActivateChild: [AuthGuardService],
+    children: [
     {path: ':id', component: ServerComponent},
     {path: ':id/edit', component: EditServerComponent}
   ]},
