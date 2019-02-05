@@ -8,6 +8,7 @@ import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuardService } from './auth-guard.service';
+import { CanDeactivateGuardService } from './servers/edit-server/can-deactivate-guard.service';
 
 
 const appRoutes: Routes = [
@@ -26,7 +27,8 @@ const appRoutes: Routes = [
       canActivateChild: [AuthGuardService],
     children: [
     {path: ':id', component: ServerComponent},
-    {path: ':id/edit', component: EditServerComponent}
+    // Now Angular will run this CandeactivateGuardService each time we are trying to leave this path
+    {path: ':id/edit', component: EditServerComponent, canDeactivate: [CanDeactivateGuardService]}
   ]},
   {path: '', component: HomeComponent},
   {path: 'not-found', component: PageNotFoundComponent},
