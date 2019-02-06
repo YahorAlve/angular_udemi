@@ -44,6 +44,12 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [],
   imports: [
+    /* By Default all servers first parse urls - they don't know anything about angular routing and they usually troes to retrieve
+    different index html files based on url and if the don;t find for instance /servers will retrieve Page not found. There is configuration
+    in web servers which will force them to retrieve index.html (our single application page) each time it doesn;t find url - so always.
+    But sometimes we can't configure it like that or for old version of browsers they can't pars urls and so on we can use # in url which
+    will focre web server only care about url before this # and everething after routing will be handled by angular */
+    // RouterModule.forRoot(appRoutes, {useHash : true})
     RouterModule.forRoot(appRoutes)
   ],
   exports: [
