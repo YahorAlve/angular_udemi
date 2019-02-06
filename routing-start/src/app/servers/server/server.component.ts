@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { ServersService } from '../servers.service';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ActivatedRoute, Params, Router, Data } from '@angular/router';
 
 @Component({
   selector: 'app-server',
@@ -16,12 +16,18 @@ export class ServerComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit() {
-    this.route.params.subscribe(
+    // Another way to get a server through resolver (for some reason lector mentione it is espically important for asynch retriveing data)
+    this.route.data.subscribe(
+      (data: Data) => {
+        this.server = data['server'];
+      }
+    );
+    /* this.route.params.subscribe(
       (params: Params) => {
         // we need to put + to convert value to number as it was used to get server by id
         this.server = this.serversService.getServer(+params['id']);
       }
-    );
+    ); */
   }
 
   onEdit() {
