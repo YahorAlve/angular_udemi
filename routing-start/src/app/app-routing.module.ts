@@ -9,6 +9,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuardService } from './auth-guard.service';
 import { CanDeactivateGuardService } from './servers/edit-server/can-deactivate-guard.service';
+import { ErrorPageComponent } from './error-page/error-page.component';
 
 
 const appRoutes: Routes = [
@@ -31,7 +32,9 @@ const appRoutes: Routes = [
     {path: ':id/edit', component: EditServerComponent, canDeactivate: [CanDeactivateGuardService]}
   ]},
   {path: '', component: HomeComponent},
-  {path: 'not-found', component: PageNotFoundComponent},
+  // {path: 'not-found', component: PageNotFoundComponent},
+  // we can pass static data to Component by using data porperty
+  {path: 'not-found', component: ErrorPageComponent, data: {message: 'Error Message !'}},
   // wildcards should be placed as last elemnt in Routes[] otherwise everething would be redirected to not found
   {path: '**', redirectTo: '/not-found'}
 ];

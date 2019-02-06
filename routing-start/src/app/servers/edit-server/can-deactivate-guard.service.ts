@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CanDeactivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 
-/* Interfaces same as in java, they don't have implementation just show behaviour should be implemented by class 
+/* Interfaces same as in java, they don't have implementation just show behaviour should be implemented by class
    implementing interface*/
 export interface CanComponentDeactivate {
   canDeactivate: () => Observable<boolean> | Promise<boolean> | boolean;
