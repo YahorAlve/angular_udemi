@@ -29,4 +29,14 @@ export class RecipeService {
   getRecipes() {
     return this.recipes.slice();
   }
+
+  getRecipeByName(name: string): Recipe {
+    for (const recipe of this.recipes.slice()) {
+      if ( recipe.name === name ) {
+        return recipe;
+      }
+    }
+    return null;
+  }
+
 }
