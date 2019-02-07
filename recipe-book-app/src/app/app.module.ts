@@ -13,6 +13,7 @@ import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-ed
 import { DropdownDirective } from './shared/dropdown.directive';
 import { AppRoutingModule } from './app-routing.module';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { PleaseSelectComponent } from './please-select/please-select.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     ShoppingListComponent,
     ShoppingEditComponent,
     DropdownDirective,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    PleaseSelectComponent
   ],
   imports: [
     BrowserModule,
