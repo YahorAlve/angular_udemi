@@ -7,10 +7,4 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
-  showRecipe = true;
-
-  showRecipeChange(show: boolean) {
-    this.showRecipe = show;
-  }
-
 }

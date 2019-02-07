@@ -1,9 +1,8 @@
-<app-header (showRecipe)="showRecipeChange($event)"></app-header>
+<app-header></app-header>
 <div class="container">
     <div class="row">
         <div class="col-md-10">
-            <app-recipe-book *ngIf="showRecipe"></app-recipe-book>
-            <app-shopping-list *ngIf="showRecipe == false"></app-shopping-list>
+            <router-outlet></router-outlet>
         </div>
     </div>
 </div>
