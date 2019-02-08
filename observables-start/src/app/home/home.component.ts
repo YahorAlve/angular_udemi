@@ -23,7 +23,9 @@ export class HomeComponent implements OnInit, OnDestroy {
     );
     /* Creating new Observable which will fire in 1 and fail in 2 and complete in 3. Create accept function as an argument
      which is supposed to be our asynch code.*/
-     /* This observer is just used to build up observable to genreate data packages and is not the same as observer (subscriber) outside */
+     /* This observer is just used to build up observable to genreate data packages and is not the same as observer (subscriber) outside 
+     - not clear. In other lection mentor mentioned that we created breadge between ovserver and observable providing it as argument, but
+     in Subject other rjx library object it is at the same time observer and observable. */
     const myObservable = Observable.create((observer: Observer<string>) => {
         setTimeout( () => {
           observer.next('First Value');
