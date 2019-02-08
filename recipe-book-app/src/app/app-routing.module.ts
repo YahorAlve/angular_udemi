@@ -6,12 +6,17 @@ import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { RecipeDetailsComponent } from './recipe-book/recipe-details/recipe-details.component';
 import { PleaseSelectComponent } from './please-select/please-select.component';
+import { RecipeEditComponent } from './recipe-book/recipe-edit/recipe-edit.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/recipes', pathMatch: 'full' },
   { path: 'recipes', component: RecipeBookComponent, children: [
+    /* WE need to be very carful with order we put our paths. E.g. if we put :name and then new each time
+    we have in url /new it will be first considered as :id and will be an error */
+    {path: '', component: PleaseSelectComponent, data: {selection: 'Recipe.'}},
+    {path: 'new', component: RecipeEditComponent},
     {path: ':name', component: RecipeDetailsComponent},
-    {path: '', component: PleaseSelectComponent, data: {selection: 'Recipe.'}}
+    {path: ':name/edit', component: RecipeEditComponent}
   ] },
   { path: 'shoppingList', component: ShoppingListComponent },
   { path: '**', component: PageNotFoundComponent },
