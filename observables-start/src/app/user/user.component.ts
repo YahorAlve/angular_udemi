@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { UserService } from '../user.service';
-import { serializePath } from '@angular/router/src/url_tree';
 
 @Component({
   selector: 'app-user',
