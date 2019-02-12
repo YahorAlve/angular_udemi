@@ -1,7 +1,13 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
-      <form>
+      <!-- TD - template Driven approach - means evrything you want to do with a form you need to do in HTML template to refclect it in NgForm-->
+      <!-- By default HtML submit form as submit, but we can interfere with angular using ngSubmit -->
+      <!-- #form local reference to an element from previous topics (In that case HTMLFormElement)-->
+      <!-- If we add #form="ngForm" angular has a directive ngForm which will be used this form (element directive was called on) 
+      as a selector will get through this HTMLFormElelemnt collect values and build this json object form. And since then
+      form will refer to angular json form. -->
+      <form (ngSubmit)="onSubmit(form)" #form="ngForm">
         <div id="user-data">
           <div class="form-group">
             <label for="username">Username</label>
