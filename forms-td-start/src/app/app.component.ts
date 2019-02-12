@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -7,13 +7,24 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
+  /* We can use ViewChild to get access to ngForm - and mentor mentioned that is even better to use as we
+  are not providing this form as an argument through submit(), so it is especially important when we need to
+  get access to ngForm before actially submitting the form  */
+  @ViewChild('form') form: NgForm;
+
   suggestUserName() {
     const suggestedName = 'Superuser';
   }
 
-  onSubmit(form: NgForm) {
+  /* onSubmit(form: NgForm) {
     console.log('Submitted!');
     console.log(form);
+  } */
+
+  onSubmit() {
+    console.log('Submitted!');
+    console.log(this.form);
   }
 
 }

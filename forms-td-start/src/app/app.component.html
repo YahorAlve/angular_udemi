@@ -7,7 +7,8 @@
       <!-- If we add #form="ngForm" angular has a directive ngForm which will be used this form (element directive was called on) 
       as a selector will get through this HTMLFormElelemnt collect values and build this json object form. And since then
       form will refer to angular json form. -->
-      <form (ngSubmit)="onSubmit(form)" #form="ngForm">
+      <!-- ngForm has a lot properties which help us to create interactive UX for users (dirty, invalid, touched and so on)  -->
+      <form (ngSubmit)="onSubmit()" #form="ngForm">
         <div id="user-data">
           <div class="form-group">
             <label for="username">Username</label>
