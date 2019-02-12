@@ -1,12 +1,13 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { IngredientModule } from '../shared/ingredient/ingredient.module';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ShoppinListService {
 
-  ingredientsChanged = new EventEmitter<IngredientModule[]>();
+  ingredientsChanged = new Subject<IngredientModule[]>();
 
   private ingredients: IngredientModule[] = [
     new IngredientModule('Apples', 5),
@@ -22,7 +23,7 @@ export class ShoppinListService {
   addNewIngredient(newIngredient: IngredientModule) {
     this.ingredients.push(newIngredient);
     console.log('Ingredients was added ' + newIngredient);
-    this.ingredientsChanged.emit(this.ingredients.slice());
+    this.ingredientsChanged.next(this.ingredients.slice());
   }
 
   addNewIngredients(newIngredients: IngredientModule[]) {
@@ -32,7 +33,7 @@ export class ShoppinListService {
     /* it is a ES6 feature called spread operator ... by this we convert array  to list */
     this.ingredients.push(...newIngredients);
     console.log('Ingredients were added ' + newIngredients);
-    this.ingredientsChanged.emit(this.ingredients.slice());
+    this.ingredientsChanged.next(this.ingredients.slice());
   }
 
 }

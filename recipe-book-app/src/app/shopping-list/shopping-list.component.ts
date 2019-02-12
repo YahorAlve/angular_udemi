@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { IngredientModule } from '../shared/ingredient/ingredient.module';
 import { ShoppinListService } from './shoppin-list.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-shopping-list',
@@ -10,7 +11,9 @@ import { ShoppinListService } from './shoppin-list.service';
   // Ingredients array. If we boot it in APpModule (in root) - it keeps all data
   // providers:[ShoppingListComponent]
 })
-export class ShoppingListComponent implements OnInit {
+export class ShoppingListComponent implements OnInit, OnDestroy {
+
+  subscription: Subscription;
 
   ingredients: IngredientModule[];
 
@@ -18,11 +21,16 @@ export class ShoppingListComponent implements OnInit {
 
   ngOnInit() {
     this.ingredients = this.shoppingListService.getIngredients();
-    this.shoppingListService.ingredientsChanged.subscribe(
+    this.subscription = this.shoppingListService.ingredientsChanged.subscribe(
       (ingredients: IngredientModule[]) => {
         this.ingredients = ingredients;
       }
     );
+  }
+
+  ngOnDestroy(): void {
+    // We need to destroy it as this observable from rjxs not from angular/core
+    this.subscription.unsubscribe();
   }
 
 }
