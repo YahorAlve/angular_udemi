@@ -9,7 +9,11 @@
       form will refer to angular json form. -->
       <!-- ngForm has a lot properties which help us to create interactive UX for users (dirty, invalid, touched and so on)  -->
       <form (ngSubmit)="onSubmit()" #form="ngForm">
-        <div id="user-data">
+        <!-- We can group form controls in groups and then the group will have css properties which previously 
+        assigned only to one input value for instnace. -->
+        <div id="user-data" 
+        ngModelGroup="userNameEmail"
+        #userData="ngModelGroup">
           <div class="form-group">
             <label for="username">Username</label>
             <!-- By default angular in td approach will create form for any HTML taged <form> but won't create controllers for this form
@@ -40,8 +44,9 @@
             email
             #email="ngModel">
             <span class="help-block" *ngIf="!email.valid && email.touched">Please enter a valid email!</span>
-          </div>
+          </div>          
         </div>
+        <span class="help-block" *ngIf="!userData.valid && userData.touched">Please enter a valid userNameEmail!</span>
         <div class="form-group">
           <label for="secret">Secret Questions</label>
           <select id="secret" 
