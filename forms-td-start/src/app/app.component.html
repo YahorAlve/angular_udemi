@@ -53,6 +53,19 @@
             <option value="teacher">Your first teacher?</option>
           </select>
         </div>
+        <!-- So we can have 3 types using of ngModel : 
+        1. ngModel - to let know know the angular form that it has to add this atribut ngModel was placed on as control
+        2. [ngModel] - with one way biding to set up some default vaule for the control
+        3. ([ngModel]) - 2 way binding, to send value from contorol to reuse it before submitting the form, 
+        when we submit form we are taking snapshot of spicific value at this moment.-->
+        <div class="form-group">
+          <textarea 
+          name="questionAnswer" 
+          rows="3"
+          [(ngModel)]="answer"
+          ></textarea>
+        <p>Your reply : {{ answer }}</p>
+        </div>
         <button 
         class="btn btn-primary" 
         type="submit"
