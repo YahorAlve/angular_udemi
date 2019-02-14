@@ -34,10 +34,12 @@
             <input type="email" 
             id="email" 
             class="form-control" 
-            ngModule name="email"
+            ngModel 
+            name="email"
             required
             email>
           </div>
+          <p *ngIf="!form.valid">Please enter the value.</p>
         </div>
         <div class="form-group">
           <label for="secret">Secret Questions</label>
@@ -50,7 +52,11 @@
             <option value="teacher">Your first teacher?</option>
           </select>
         </div>
-        <button class="btn btn-primary" type="submit">Submit</button>
+        <button 
+        class="btn btn-primary" 
+        type="submit"
+        [disabled]="!form.valid"
+        >Submit</button>
       </form>
     </div>
   </div>
