@@ -46,7 +46,7 @@
           <label for="secret">Secret Questions</label>
           <select id="secret" 
                   class="form-control"
-                  ngModule
+                  [ngModel] = "defaultOption"
                   name="secret"
           >
             <option value="pet">Your first Pet?</option>

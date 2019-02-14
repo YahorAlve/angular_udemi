@@ -13,6 +13,8 @@ export class AppComponent {
   get access to ngForm before actially submitting the form  */
   @ViewChild('form') form: NgForm;
 
+  defaultOption = 'pet';
+
   suggestUserName() {
     const suggestedName = 'Superuser';
   }
