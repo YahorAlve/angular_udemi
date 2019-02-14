@@ -20,6 +20,25 @@ export class AppComponent {
 
   suggestUserName() {
     const suggestedName = 'Superuser';
+    /* We can set up work with NgForm do to any modifications from code. 1st way just set up json object
+    representing our form with values. That way is not the best as it is going ovvereide already values which
+    were put before. But good option if we need to fill everething out with one click.*/
+    /* this.form.setValue({
+      userNameEmail: {
+        username: suggestedName,
+        email: ''
+      },
+      secret: 'pet',
+      questionAnswer: '',
+      gender: 'male'
+    }); */
+    /* The below option is better. We can get the actial form object as NgForm is just container of the from(wrapper) */
+    this.form.form.patchValue({
+      userNameEmail: {
+        username: suggestedName
+      },
+      secret: 'teacher',
+    });
   }
 
   /* onSubmit(form: NgForm) {
