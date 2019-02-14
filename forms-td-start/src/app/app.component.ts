@@ -64,6 +64,15 @@ export class AppComponent {
     this.user.secretQuestion = this.form.value.secret;
     this.user.answer = this.form.value.questionAnswer;
     this.user.gender = this.form.value.gender;
+    /* This form.reset() will not just reset the form but also all properties to default falues (e.g. touched false and so on)*/
+    // this.form.reset();
+    /* WE also can reset it in the way below and set up some new values upon reseting */
+    this.form.reset({
+      userNameEmail: {
+        username: 'suggestedName'
+      },
+      secret: 'teacher',
+    });
   }
 
 }
