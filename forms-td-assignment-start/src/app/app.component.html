@@ -1,11 +1,13 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
-      <form #myForm="ngForm">
+      <!-- In form if it has action it means we will send a request, instead we wnat angular take an ation that is why we removed it -->
+      <form #myForm="ngForm" (ngSubmit) = "onSubmit()">
         <hr>
         <div class="form-group">
               <label for="email"> Email </label>
               <input
+              class="form-control"
               type="email" 
               name="email" 
               id="email"
@@ -30,6 +32,7 @@
           <div class="form-group">
               <label for="password"> Password </label>
               <input 
+              id="password"
               name="password"
               ngModel
               required
