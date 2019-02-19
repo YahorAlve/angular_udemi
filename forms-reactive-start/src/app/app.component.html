@@ -37,6 +37,25 @@
               [value]="gender">{{ gender }}
           </label>
         </div>
+        <div formArrayName="hobbies">
+          <h4>Your Hobbies</h4>
+          <!-- Lector mentioned smt about type="button" is omportant so we didnt submit the form. -->
+          <button 
+          class="btn btn-default" 
+          type="button"
+          (click)="onAddHobby()"
+          >Add Hobby</button>
+          <!-- Here we are setting [forControlName] to variable that is why we need property binding through the []="value" -->
+          <!-- In String it would be porperty='string' -->
+          <div 
+          class="form-group"
+          *ngFor="let control of signupForm.get('hobbies').controls; let i=index">
+            <input type="text" 
+            class="form-control"
+            [formControlName] = "i"
+            >
+          </div>
+        </div>
         <span
             *ngIf="!signupForm.valid && signupForm.touched" 
             class="help-block">Please enter valid Form!</span>
