@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -26,8 +27,9 @@ export class AppComponent implements OnInit {
         going to call this fucntion. In our case it is not called in this specific class it is called outside in some angular 
         form class and it doesn't have such property as this.forbiddenUserNames. But we can add binding to our current class 
         this as we did below and it will find this.forbiddenUserNames as this will be pointed to this currecnt class. */
+        /* for asynch validator we are using third argument value */
         'username' : new FormControl(null, [Validators.required, this.forbiddenNames.bind(this)]),
-        'email': new FormControl(null, [Validators.required, Validators.email])
+        'email': new FormControl(null, [Validators.required, Validators.email], this.forbiddenEmailsAsynch)
       }),
       'gender': new FormControl('male'),
       'hobbies': new FormArray([])
@@ -52,4 +54,19 @@ export class AppComponent implements OnInit {
     /* If validation passed successfully we should return nothing or null. We should not return {'key': false} */
     return null;
   }
+
+  /* Ng-pending attribute will show up temporarely for time waiting for response  */
+  forbiddenEmailsAsynch(control: FormControl): Promise<any> | Observable<any> {
+    const promise = new Promise<any>((resolve, reject) => {
+        setTimeout(() => {
+            if (control.value === 'test@test.com') {
+              resolve ({'forbiddenEmail' : true});
+            } else {
+              resolve(null);
+            }
+          }, 1500);
+    });
+    return promise;
+  }
+
 }
