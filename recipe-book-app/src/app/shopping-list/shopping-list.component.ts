@@ -28,6 +28,10 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
     );
   }
 
+  onEditItem(index: number) {
+    this.shoppingListService.ingredientEdited.next(index);
+  }
+
   ngOnDestroy(): void {
     // We need to destroy it as this observable from rjxs not from angular/core
     this.subscription.unsubscribe();
