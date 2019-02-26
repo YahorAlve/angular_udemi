@@ -41,10 +41,14 @@ export class RecipeEditComponent implements OnInit {
       recipeDescription = recipe.description;
     }
     this.recipeForm = new FormGroup({
-      'name': new FormControl(recipeName),
-      'imagePath': new FormControl(recipeImagePath),
-      'descritption': new FormControl(recipeDescription),
+      'nameControl': new FormControl(recipeName),
+      'imagePathControl': new FormControl(recipeImagePath),
+      'descritptionControl': new FormControl(recipeDescription),
     });
+  }
+
+  onSubmit() {
+    console.log(this.recipeForm);
   }
 
 }
