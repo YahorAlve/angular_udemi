@@ -38,7 +38,11 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
     // diff between const and let that const can be assigned only one and can't be re-assigned, let - can be
     // const ingredient = new IngredientModule(nameInput.value, +amountInput.value);
     const value = form.value;
-    this.shoppingListService.addNewIngredient(new IngredientModule(value.name, value.amount));
+    if (this.editMode) {
+      this.shoppingListService.updateIngredient(this.editedItemNumber, new IngredientModule(value.name, value.amount));
+    } else {
+      this.shoppingListService.addNewIngredient(new IngredientModule(value.name, value.amount));
+    }
   }
 
   ngOnDestroy(): void {

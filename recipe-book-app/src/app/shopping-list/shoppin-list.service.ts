@@ -41,4 +41,9 @@ export class ShoppinListService {
     this.ingredientsChanged.next(this.ingredients.slice());
   }
 
+  updateIngredient(index: number, ingredient: IngredientModule) {
+    this.ingredients[index] = ingredient;
+    this.ingredientsChanged.next(this.ingredients.slice());
+  }
+
 }
