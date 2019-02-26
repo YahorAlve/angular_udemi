@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-xs-12">
-    <form>
+    <form (ngSubmit)="onSubmit(form)" #form="ngForm">
       <div class="row">
         <div class="col-sm-5 form-group">
           <!-- The <label> element does not render as anything special for the user. However, it provides a 
@@ -9,12 +9,15 @@
             Tip: A label can be bound to an element either by using the "for" attribute, or by placing the 
             element inside the <label> element.
           -->
+          <!-- This name property is going to be used for getting property value from ngForm object in code -->
           <label for="name">Name</label>
           <input 
           type="text" 
           id="name" 
           class="form-control"
-          #nameInput />
+          name="name"
+          ngModel
+          />
         </div>
         <div class="col-sm-2 form-group">
           <label for="amount">Amount</label>
@@ -22,12 +25,15 @@
           type="number" 
           id="amount" 
           class="form-control"
-          #amountInput />
+          name="amount"
+          ngModel
+          />
         </div>
       </div>
       <div class="row">
         <div class="col-xs-12">
-          <button class="btn btn-success" type="submit" (click)="onSubmit(nameInput,amountInput)">Add</button>
+          <!-- Lector mentioned that because Add is only type submit it will submit a form (will be intercepted by angular at ngSubmit) -->
+          <button class="btn btn-success" type="submit">Add</button>
           <button class="btn btn-danger" type="button">Delete</button>
           <button class="btn btn-primary" type="button">Clear</button>
         </div>
