@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { FormGroup, FormControl, FormArray } from '@angular/forms';
+import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 import { RecipeService } from '../recipe.service';
 import { Recipe } from '../recipe.module';
 
@@ -45,8 +45,11 @@ export class RecipeEditComponent implements OnInit {
           recipeIngredients.push(
             new FormGroup(
               {
-                'name': new FormControl(ingredient.name),
-                'amount': new FormControl(ingredient.amount)
+                'name': new FormControl(ingredient.name, Validators.required),
+                'amount': new FormControl(ingredient.amount, [
+                  Validators.required,
+                  Validators.pattern(/^[0-9]+[0-9]*$/)
+                ])
               }
             )
           );
@@ -54,9 +57,9 @@ export class RecipeEditComponent implements OnInit {
       }
     }
     this.recipeForm = new FormGroup({
-      'nameControl': new FormControl(recipeName),
-      'imagePathControl': new FormControl(recipeImagePath),
-      'descritptionControl': new FormControl(recipeDescription),
+      'nameControl': new FormControl(recipeName, Validators.required),
+      'imagePathControl': new FormControl(recipeImagePath, Validators.required),
+      'descritptionControl': new FormControl(recipeDescription, Validators.required),
       'recipeIngredientsControl': recipeIngredients
     });
   }
@@ -69,8 +72,11 @@ export class RecipeEditComponent implements OnInit {
     (<FormArray> this.recipeForm.get('recipeIngredientsControl')).push(
       new FormGroup(
         {
-          'name': new FormControl(),
-          'amount': new FormControl()
+          'name': new FormControl(null, Validators.required),
+          'amount': new FormControl(null, [
+            Validators.required,
+            Validators.pattern(/^[0-9]+[0-9]*$/)
+          ])
         }
       )
     );
