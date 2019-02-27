@@ -16,7 +16,7 @@
             type="text" 
             name="name" 
             id="name"
-            formControlName="nameControl"
+            formControlName="name"
             class="form-control">
           </div>
         </div>
@@ -30,7 +30,7 @@
               type="text" 
               name="imagePath" 
               id="imagePath"
-              formControlName="imagePathControl"
+              formControlName="imagePath"
               class="form-control">
             </div>
         </div>
@@ -44,19 +44,19 @@
         <div class="col-xs-12">
               <!-- form-group/form-control just css bootstrap classes to make forms look nice. -->
               <div class="form-group">
-                <label for="descritption">Description</label>
+                <label for="description">Description</label>
                 <textarea 
                 type="text" 
-                name="descritption" 
-                id="descritption"
-                formControlName="descritptionControl"
+                name="description" 
+                id="description"
+                formControlName="description"
                 class="form-control"
                 rows="6"></textarea>
               </div>
         </div>
       </div>
       <div class="row">
-        <div class="col-xs-12" formArrayName="recipeIngredientsControl">
+        <div class="col-xs-12" formArrayName="ingredients">
           <div class="row" 
           *ngFor="let item of getControls(); let i=index"
           [formGroupName]="i"
@@ -81,7 +81,7 @@
           <hr>
           <div class="row">
             <div class="col-xs-12">
-              <button class="btn btn-success" (click)="addIngredients()">Add Ingredient</button>
+              <button class="btn btn-success" type="button" (click)="addIngredients()">Add Ingredient</button>
             </div>
           </div>
         </div>

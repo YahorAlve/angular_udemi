@@ -13,6 +13,7 @@ export class RecipeEditComponent implements OnInit {
 
   name: string;
   editMode = false;
+  editItemId: number;
   recipeForm: FormGroup;
 
   constructor(private route: ActivatedRoute, private recipeService: RecipeService) {
@@ -24,6 +25,9 @@ export class RecipeEditComponent implements OnInit {
         this.name = params['name'];
         this.editMode = params['name'] != null;
         console.log(this.editMode);
+        if (this.editMode) {
+            this.editItemId = this.recipeService.getRecipeIdByName(this.name);
+        }
         this.initForm();
       }
     );
@@ -57,19 +61,32 @@ export class RecipeEditComponent implements OnInit {
       }
     }
     this.recipeForm = new FormGroup({
-      'nameControl': new FormControl(recipeName, Validators.required),
-      'imagePathControl': new FormControl(recipeImagePath, Validators.required),
-      'descritptionControl': new FormControl(recipeDescription, Validators.required),
-      'recipeIngredientsControl': recipeIngredients
+      'name': new FormControl(recipeName, Validators.required),
+      'imagePath': new FormControl(recipeImagePath, Validators.required),
+      'description': new FormControl(recipeDescription, Validators.required),
+      'ingredients': recipeIngredients
     });
   }
 
   onSubmit() {
-    console.log(this.recipeForm);
+    /* const recipe = new Recipe(
+      this.recipeForm.value['name'],
+      this.recipeForm.value['description'],
+      this.recipeForm.value['imagePath'],
+      this.recipeForm.value['ingredients'],
+    ); */
+    /* One of advantages of Reactive approach as our FormGroup has exact the same structure and the same field names
+       we can just pass FormGroup as an Recipe argument.
+    */
+    if (this.editMode) {
+      this.recipeService.updateRecipe(this.editItemId, this.recipeForm.value);
+    } else {
+      this.recipeService.addRecipe(this.recipeForm.value);
+    }
   }
 
   addIngredients() {
-    (<FormArray> this.recipeForm.get('recipeIngredientsControl')).push(
+    (<FormArray> this.recipeForm.get('ingredients')).push(
       new FormGroup(
         {
           'name': new FormControl(null, Validators.required),
@@ -83,7 +100,7 @@ export class RecipeEditComponent implements OnInit {
   }
 
   getControls() {
-    return (<FormArray>this.recipeForm.get('recipeIngredientsControl')).controls;
+    return (<FormArray>this.recipeForm.get('ingredients')).controls;
   }
 
 }
