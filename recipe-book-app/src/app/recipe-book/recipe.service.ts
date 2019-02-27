@@ -62,4 +62,9 @@ export class RecipeService {
     this.recipeChanged.next(this.recipes.slice());
   }
 
+  deleteRecipe(recipeName: string) {
+    this.recipes.splice(this.getRecipeIdByName(name), 1);
+    this.recipeChanged.next(this.recipes.slice());
+  }
+
 }
