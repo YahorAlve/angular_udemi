@@ -13,7 +13,7 @@
           <!-- To pass parametr to pipe just add : like date:'fullDate' or if you need more than one argument just add another :
           like date:'firstParam':'secondParam' -->
           <!-- Order of Pipes should be from left to right -->
-          <strong>{{ server.name | shorten }}</strong> | 
+          <strong>{{ server.name | shorten:15 }}</strong> | 
           {{ server.instanceType | uppercase }} | 
           {{ server.started | date:'fullDate' | uppercase }}
         </li>
