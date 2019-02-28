@@ -2,10 +2,18 @@
   <div class="row">
     <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
       <input type="text" [(ngModel)]="filteredStatus">
+      <br>
+      <button class="btn btn-primary" (click)="onAddServer()">Add Server</button>
       <hr>
       <ul class="list-group">
         <!-- Pipe can be applied to any out of function, e.g. in ngFor servers array it is just one of possible 
           outputs and we apply our pipe to this element.-->
+        <!-- Angular will not run pipe each time any recalculation happens to servers (or any other property pipe applied to)
+        has changed. It will only be reapplied when params have changed. That is why if we apply filter and then add more servers 
+        they are not going to be filtered ony after we retype filtered status pipe will be re-applied to latest property values -->
+        <!-- To be precise updating objects/arrays won;t trigger it  -->
+        <!-- It is default angular behaviour for better perormance. We can cahnge it by adding pure:false to @Pipe annatation in pipe
+          ts file but it could leade to worse performace. -->    
         <li
           class="list-group-item"
           *ngFor="let server of servers | filter:filteredStatus:'status'"
