@@ -4,10 +4,13 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
+import { ShortenPipe } from './shorten.pipe';
 
+/* Same as components and directives we need to add pipes onto declarations */
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ShortenPipe
   ],
   imports: [
     BrowserModule,
