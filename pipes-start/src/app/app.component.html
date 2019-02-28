@@ -10,7 +10,11 @@
             class="badge">
             {{ server.status }}
           </span>
-          <strong>{{ server.name }}</strong> | {{ server.instanceType }} | {{ server.started }}
+          <!-- To pass parametr to pipe just add : like date:'fullDate' or if you need more than one argument just add another :
+          like date:'firstParam':'secondParam' -->
+          <strong>{{ server.name }}</strong> | 
+          {{ server.instanceType | uppercase }} | 
+          {{ server.started | date:'fullDate' }}
         </li>
       </ul>
     </div>
