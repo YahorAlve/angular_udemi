@@ -4,6 +4,12 @@
       <input type="text" [(ngModel)]="filteredStatus">
       <br>
       <button class="btn btn-primary" (click)="onAddServer()">Add Server</button>
+      <br> <br>
+      <!-- If we leave <h2> App Status {{ appStatus }} </h2> without asynch pipe it will jsut show right away 
+      Promise Object onto screen and that is axpected behaviour angular for string interpoaltion doesn't care 
+      if tatus changed and it saves a lot performace. If we want to show it only after it was resolved in promise
+      we should add asynch pipe. -->
+      <h2> App Status {{ appStatus | async }} </h2>
       <hr>
       <ul class="list-group">
         <!-- Pipe can be applied to any out of function, e.g. in ngFor servers array it is just one of possible 
