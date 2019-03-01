@@ -22,7 +22,7 @@
           ts file but it could leade to worse performace. -->    
         <li
           class="list-group-item"
-          *ngFor="let server of servers | filter:filteredStatus:'status'"
+          *ngFor="let server of servers | filter:filteredStatus:'status' | sort:'name'"
           [ngClass]="getStatusClasses(server)">
           <span
             class="badge">
@@ -32,7 +32,7 @@
           like date:'firstParam':'secondParam' -->
           <!-- Order of Pipes should be from left to right -->
           <strong>{{ server.name | shorten:15 }}</strong> | 
-          {{ server.instanceType | uppercase }} | 
+          {{ server.instanceType | uppercase | reverse}} | 
           {{ server.started | date:'fullDate' | uppercase }}
         </li>
       </ul>
