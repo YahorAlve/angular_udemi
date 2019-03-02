@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ServiceService } from './service.service';
 
 @Component({
   selector: 'app-root',
@@ -18,6 +19,9 @@ export class AppComponent {
       id: this.generateId()
     }
   ];
+
+  constructor(private service: ServiceService) {}
+
   onAddServer(name: string) {
     this.servers.push({
       name: name,
@@ -27,5 +31,14 @@ export class AppComponent {
   }
   private generateId() {
     return Math.round(Math.random() * 10000);
+  }
+
+  /* Here when we will subscribe to event http request will be executed in observable mode */
+  onSave() {
+    this.service.storeServers(this.servers)
+      .subscribe(
+        (response) => console.log(response),
+        (error) => console.log(error)
+      );
   }
 }
