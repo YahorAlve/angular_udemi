@@ -8,6 +8,9 @@ import { Response } from '@angular/http';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
+  appName = this.service.getAppName();
+
   servers = [
     {
       name: 'Testserver',

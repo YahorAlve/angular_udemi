@@ -27,7 +27,7 @@ export class ServiceService {
   /* Map will create another wrapper observable which will be returned and in between first observable for http and this new one
    will transform response to data */
   getServers() {
-    return this.http.get('https://angular-http-practice-e64b5.firebaseio.com/data')
+    return this.http.get('https://angular-http-practice-e64b5.firebaseio.com/data.json')
                   .map(
                       (response: Response) => {
                         const data = response.json();
@@ -44,5 +44,14 @@ export class ServiceService {
                       return Observable.throw('Something went wrong');
                     }
                   );
+  }
+
+  getAppName() {
+    return this.http.get('https://angular-http-practice-e64b5.firebaseio.com/appName.json')
+              .map(
+                (response: Response) => {
+                  return response.json();
+                }
+              );
   }
 }
