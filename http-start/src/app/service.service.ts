@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, Headers } from '@angular/http';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +13,9 @@ export class ServiceService {
   /* Behind the scene Angular http service is using observable and will not send erequest unless we subscribe to event.
   So just create object observable but no http request was sent yet as noone listen to it no point in sending it.*/
   storeServers(servers: any[]) {
-    return this.http.post('https://angular-http-practice-e64b5.firebaseio.com/data.json', servers);
+    const myHeaders = new Headers({'Content-Type': 'application/json'});
+    return this.http.post('https://angular-http-practice-e64b5.firebaseio.com/data.json',
+    servers,
+    {headers: myHeaders});
   }
 }
