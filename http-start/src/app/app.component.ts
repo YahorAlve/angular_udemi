@@ -49,6 +49,8 @@ export class AppComponent {
         (servers: any[]) => {
           console.log(servers);
         },
+        /* Here we proccessing catch Observable.throw(). Also we still will see error in browser console for http as it is 
+        ajax browser stuff but everething below would be processed by our code.*/
         (error) => console.log(error)
       );
   }

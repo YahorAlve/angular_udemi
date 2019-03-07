@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
 import 'rxjs/Rx';
+import { Observable } from 'rxjs/Rx';
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +27,7 @@ export class ServiceService {
   /* Map will create another wrapper observable which will be returned and in between first observable for http and this new one
    will transform response to data */
   getServers() {
-    return this.http.get('https://angular-http-practice-e64b5.firebaseio.com/data.json')
+    return this.http.get('https://angular-http-practice-e64b5.firebaseio.com/data')
                   .map(
                       (response: Response) => {
                         const data = response.json();
@@ -35,6 +36,13 @@ export class ServiceService {
                         }
                         return data;
                       }
+                  )
+                  .catch(
+                    (error: Response) => {
+                      /* Now here we can process it through observale error proccessing where we subscribe to this
+                      observable and provide argument for error processing. */
+                      return Observable.throw('Something went wrong');
+                    }
                   );
   }
 }
