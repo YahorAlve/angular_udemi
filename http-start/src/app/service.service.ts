@@ -18,4 +18,8 @@ export class ServiceService {
     servers,
     {headers: myHeaders});
   }
+
+  getServers() {
+    return this.http.get('https://angular-http-practice-e64b5.firebaseio.com/data.json');
+  }
 }
