@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers } from '@angular/http';
+import { Http, Headers, Response } from '@angular/http';
+import 'rxjs/Rx';
 
 @Injectable({
   providedIn: 'root'
@@ -14,12 +15,23 @@ export class ServiceService {
   So just create object observable but no http request was sent yet as noone listen to it no point in sending it.*/
   storeServers(servers: any[]) {
     const myHeaders = new Headers({'Content-Type': 'application/json'});
-    return this.http.post('https://angular-http-practice-e64b5.firebaseio.com/data.json',
+    /* return this.http.post('https://angular-http-practice-e64b5.firebaseio.com/data.json',
+    servers,
+    {headers: myHeaders}); */
+    return this.http.put('https://angular-http-practice-e64b5.firebaseio.com/data.json',
     servers,
     {headers: myHeaders});
   }
 
+  /* Map will create another wrapper observable which will be returned and in between first observable for http and this new one
+   will transform response to data */
   getServers() {
-    return this.http.get('https://angular-http-practice-e64b5.firebaseio.com/data.json');
+    return this.http.get('https://angular-http-practice-e64b5.firebaseio.com/data.json')
+                  .map(
+                      (response: Response) => {
+                        const data = response.json();
+                        return data;
+                      }
+                  );
   }
 }
