@@ -15,6 +15,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { PleaseSelectComponent } from './please-select/please-select.component';
 import { RecipeEditComponent } from './recipe-book/recipe-edit/recipe-edit.component';
+import { HttpModule } from '@angular/http';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { RecipeEditComponent } from './recipe-book/recipe-edit/recipe-edit.compo
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpModule
   ],
   providers: [],
   bootstrap: [AppComponent]
