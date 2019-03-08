@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { RecipeService } from '../recipe-book/recipe.service';
 import { Recipe } from '../recipe-book/recipe.module';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -18,11 +19,24 @@ export class DataStorageService {
   at component level in case we need to process an error in varied ways depends on component (e.g. different error messages and so on)*/
   getRecipes() {
     return this.http.get('https://ng-recipe-book-udemi.firebaseio.com/recipes.json')
-                .subscribe(
-                  (response: Response) => {
-                    const recipes: Recipe[] = response.json();
-                    this.recipeService.setRecipes(recipes);
-                  }
-                );
+                  .pipe(map(
+                    (response: Response) => {
+                      const recipes: Recipe[] = response.json();
+                      for (const recipe of recipes) {
+                        if (!recipe['ingredients']) {
+                          console.log(recipe);
+                          recipe['ingredients'] = [];
+                        }
+                      }
+                      return recipes;
+                    }
+                  ))
+                  /* So when we use map we recreate another observable with new one return type and now subscribe 
+                  to this new type*/
+                  .subscribe(
+                        (recipes: Recipe[]) => {
+                            this.recipeService.setRecipes(recipes);
+                        }
+                  );
   }
 }
