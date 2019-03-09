@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import * as firebase from 'firebase';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,7 @@ export class AuthService {
 
   token: string;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   signUpUser(email: string, password: string) {
     firebase.auth().createUserWithEmailAndPassword(email, password)
@@ -21,6 +22,7 @@ export class AuthService {
     firebase.auth().signInWithEmailAndPassword(email, password)
         .then(
           response => {
+            this.router.navigate(['/']);
             /*So one of ways to solve token issue is call token set up while doing login and re-setup in when doing getTokenId
             It looks it is still not gurantee that token id will be set up imidiatly but not long time (call to firebase)
             after successful login.*/
