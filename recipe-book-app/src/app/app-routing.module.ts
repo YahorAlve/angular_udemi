@@ -8,6 +8,7 @@ import { RecipeDetailsComponent } from './recipe-book/recipe-details/recipe-deta
 import { PleaseSelectComponent } from './please-select/please-select.component';
 import { RecipeEditComponent } from './recipe-book/recipe-edit/recipe-edit.component';
 import { SignupComponent } from './auth/signup/signup.component';
+import { SigninComponent } from './auth/signin/signin.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/recipes', pathMatch: 'full' },
@@ -21,6 +22,7 @@ const routes: Routes = [
   ] },
   { path: 'shoppingList', component: ShoppingListComponent },
   { path: 'signup', component: SignupComponent },
+  { path: 'signin', component: SigninComponent },
   { path: '**', component: PageNotFoundComponent }
 ];
 
