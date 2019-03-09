@@ -3,22 +3,43 @@ import { Http, Response } from '@angular/http';
 import { RecipeService } from '../recipe-book/recipe.service';
 import { Recipe } from '../recipe-book/recipe.module';
 import { map } from 'rxjs/operators';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataStorageService {
 
-  constructor(private http: Http, private recipeService: RecipeService) { }
+  constructor(private http: Http,
+              private recipeService: RecipeService,
+              private authService: AuthService) { }
 
   storeRecipes() {
-    return this.http.put('https://ng-recipe-book-udemi.firebaseio.com/recipes.json', this.recipeService.getRecipes());
+    const token = this.authService.getTokenId();
+    return this.http.put('https://ng-recipe-book-udemi.firebaseio.com/recipes.json?auth=' + token, this.recipeService.getRecipes());
   }
 
   /* We can subscribe in service or at component level like in case storeRecipes, there are some benifits to subscribe
   at component level in case we need to process an error in varied ways depends on component (e.g. different error messages and so on)*/
   getRecipes() {
-    return this.http.get('https://ng-recipe-book-udemi.firebaseio.com/recipes.json')
+    /*
+    If we are going to do like below :
+    let tk = '';
+    this.authService.getTokenId()
+      .then(
+        (token: string) => {
+          tk = token;
+        }
+      );
+    We won't be able to use tk token variable as it will be empty till promise will be completed and as result in following functions
+    we will be having values, that is how observables work - asynchroniously - execution will proceed and won't wait for returned
+    values.
+    */
+    /* Executing get inside callback of promise also not teh best soultion as we can't return observable as we are doing in storeRecipe 
+    (in case we need to do it)*/
+    /* Below will garantee us that some token will be returned (in some cases expired as design not the best)  */
+    const token = this.authService.getTokenId();
+    return this.http.get('https://ng-recipe-book-udemi.firebaseio.com/recipes.json?auth=' + token)
                   .pipe(map(
                     (response: Response) => {
                       const recipes: Recipe[] = response.json();
