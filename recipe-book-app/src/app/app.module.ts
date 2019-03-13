@@ -20,6 +20,7 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { SigninComponent } from './auth/signin/signin.component';
 
 @NgModule({
+  /* In declarations we put Components, Directives and Pipes the module uses. */
   declarations: [
     AppComponent,
     HeaderComponent,
@@ -36,6 +37,8 @@ import { SigninComponent } from './auth/signin/signin.component';
     SignupComponent,
     SigninComponent
   ],
+  /* In imports modules which current module is using. From importated modules will be only importated stuff which is 
+  exported. E.g. FormsModule has exported form directives (@NgForm) we can use after importing this FormsModule. */
   imports: [
     BrowserModule,
     FormsModule,
@@ -43,7 +46,9 @@ import { SigninComponent } from './auth/signin/signin.component';
     AppRoutingModule,
     HttpModule
   ],
+  /* Providrs we already know if put below it one same instnace will be shared among whole application. I am unsing anatation in root.*/
   providers: [],
+  /* It is just first component our application should start form. In our case app.component.html will be loaded first.  */
   bootstrap: [AppComponent]
 })
 export class AppModule { }
