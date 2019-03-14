@@ -6,20 +6,17 @@ import { HeaderComponent } from './header/header.component';
 import { AppRoutingModule } from './app-routing.module';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { HttpModule } from '@angular/http';
-import { SignupComponent } from './auth/signup/signup.component';
-import { SigninComponent } from './auth/signin/signin.component';
 import { RecipesModule } from './recipe-book/recipes.module';
 import { SharedModule } from './shared/shared.module';
 import { ShoppingListModule } from './shopping-list/shopping-list.module';
+import { AuthModule } from './auth/auth.module';
 
 @NgModule({
   /* In declarations we put Components, Directives and Pipes the module uses. */
   declarations: [
     AppComponent,
     HeaderComponent,
-    PageNotFoundComponent,
-    SignupComponent,
-    SigninComponent
+    PageNotFoundComponent
   ],
   /* In imports modules which current module is using. From importated modules will be only importated stuff which is
   exported. E.g. FormsModule has exported form directives (@NgForm) we can use after importing this FormsModule. */
@@ -37,7 +34,8 @@ import { ShoppingListModule } from './shopping-list/shopping-list.module';
     AppRoutingModule,
     HttpModule,
     SharedModule,
-    ShoppingListModule
+    ShoppingListModule,
+    AuthModule
   ],
   /* Providrs we already know if put below it one same instnace will be shared among whole application. I am unsing anatation in root.*/
   /* But we still leave RecipeService in root as it is used amon other components - not only Recipe Feature.
