@@ -7,6 +7,8 @@ import { RecipeListComponent } from './recipe-list/recipe-list.component';
 import { RecipeItemComponent } from './recipe-list/recipe-item/recipe-item.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DropdownDirective } from '../shared/dropdown.directive';
+import { RecipesRoutingModule } from './recipes-routing.module';
+import { PleaseSelectComponent } from '../please-select/please-select.component';
 
 
 /* Just reminder that import above is fro typescript, when cli(webpack) builds source angular files it needs
@@ -17,7 +19,8 @@ to parse ts and type class name to real angular code. Import in @NgModule is for
     RecipeDetailsComponent,
     RecipeEditComponent,
     RecipeListComponent,
-    RecipeItemComponent
+    RecipeItemComponent,
+    PleaseSelectComponent
     /* As DropDownDirective is used among different features it should be presented in both in case we are starting them
     separatly. */
     /* BUT Very important note we must not dublicate same declarations for modules, we can dublicate services, modules but
@@ -30,7 +33,8 @@ to parse ts and type class name to real angular code. Import in @NgModule is for
   BrowserModule only in APpModule and CommonModule for all feature modules.*/
   imports: [
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RecipesRoutingModule
   ]
 })
 export class RecipesModule { }

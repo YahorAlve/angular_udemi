@@ -24,7 +24,6 @@ import { RecipesModule } from './recipe-book/recipes.module';
     ShoppingEditComponent,
     DropdownDirective,
     PageNotFoundComponent,
-    PleaseSelectComponent,
     SignupComponent,
     SigninComponent
   ],
@@ -33,9 +32,12 @@ import { RecipesModule } from './recipe-book/recipes.module';
   imports: [
     BrowserModule,
     FormsModule,
+    /* There is some importance to have RecipesModule (which includes RecipeRouting Modules) before AppRoutingModule for working
+    wildCards correctly. But was not clear why just looks some specific how angular builds/maps routing pathes while injecting child 
+    modules. */
+    RecipesModule,
     AppRoutingModule,
-    HttpModule,
-    RecipesModule
+    HttpModule
   ],
   /* Providrs we already know if put below it one same instnace will be shared among whole application. I am unsing anatation in root.*/
   /* But we still leave RecipeService in root as it is used amon other components - not only Recipe Feature.
