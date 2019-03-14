@@ -31,6 +31,7 @@ import { AuthModule } from './auth/auth.module';
     wildCards correctly. But was not clear why just looks some specific how angular builds/maps routing pathes while injecting child
     modules. */
     RecipesModule,
+    AuthModule,
     AppRoutingModule,
     HttpModule,
     SharedModule,
