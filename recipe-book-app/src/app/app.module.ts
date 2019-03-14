@@ -10,13 +10,15 @@ import { RecipesModule } from './recipe-book/recipes.module';
 import { SharedModule } from './shared/shared.module';
 import { ShoppingListModule } from './shopping-list/shopping-list.module';
 import { AuthModule } from './auth/auth.module';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   /* In declarations we put Components, Directives and Pipes the module uses. */
   declarations: [
     AppComponent,
     HeaderComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    HomeComponent
   ],
   /* In imports modules which current module is using. From importated modules will be only importated stuff which is
   exported. E.g. FormsModule has exported form directives (@NgForm) we can use after importing this FormsModule. */
@@ -30,7 +32,9 @@ import { AuthModule } from './auth/auth.module';
     /* There is some importance to have RecipesModule (which includes RecipeRouting Modules) before AppRoutingModule for working
     wildCards correctly. But was not clear why just looks some specific how angular builds/maps routing pathes while injecting child
     modules. */
-    RecipesModule,
+    /* When we put here directly imports Modules webpack will build main inital bundle js file with all parts which is
+    included in these Modules, but if we want lazy loading for some modules we need to remove them from these imports and make corrections
+    in routing module using string path to module we want to load. */
     AuthModule,
     AppRoutingModule,
     HttpModule,
