@@ -44,6 +44,9 @@ import { CoreModule } from './core/core.module';
   /* But we still leave RecipeService in root as it is used amon other components - not only Recipe Feature.
   Usually we should not move service into Feature level but technically like mentioned lector It would still work
   as default behaviour of angular to load all modules and inject them in root of app.*/
+  /* We can also put all providers into Core Module and it will be injected into root injector and same instances will be shared
+  withing application. In my case I use annotatioin in root, but there are a lot things to keep in mind, please read :
+  https://medium.com/@tomastrajan/total-guide-to-angular-6-dependency-injection-providedin-vs-providers-85b7a347b59f*/
   providers: [],
   /* It is just first component our application should start form. In our case app.component.html will be loaded first.  */
   bootstrap: [AppComponent]
