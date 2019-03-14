@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { HomeComponent } from './home/home.component';
+import { HomeComponent } from './core/home/home.component';
+import { PageNotFoundComponent } from './core/page-not-found/page-not-found.component';
 
 const routes: Routes = [
   /* WE need to be very carful with order we put our paths. E.g. if we put :name and then new each time
