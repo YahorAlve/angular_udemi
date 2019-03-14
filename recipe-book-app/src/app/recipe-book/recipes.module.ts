@@ -9,6 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { DropdownDirective } from '../shared/dropdown.directive';
 import { RecipesRoutingModule } from './recipes-routing.module';
 import { PleaseSelectComponent } from '../please-select/please-select.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 /* Just reminder that import above is fro typescript, when cli(webpack) builds source angular files it needs
@@ -34,6 +35,7 @@ to parse ts and type class name to real angular code. Import in @NgModule is for
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    SharedModule,
     RecipesRoutingModule
   ]
 })

@@ -14,6 +14,7 @@ import { HttpModule } from '@angular/http';
 import { SignupComponent } from './auth/signup/signup.component';
 import { SigninComponent } from './auth/signin/signin.component';
 import { RecipesModule } from './recipe-book/recipes.module';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   /* In declarations we put Components, Directives and Pipes the module uses. */
@@ -22,7 +23,6 @@ import { RecipesModule } from './recipe-book/recipes.module';
     HeaderComponent,
     ShoppingListComponent,
     ShoppingEditComponent,
-    DropdownDirective,
     PageNotFoundComponent,
     SignupComponent,
     SigninComponent
@@ -37,7 +37,8 @@ import { RecipesModule } from './recipe-book/recipes.module';
     modules. */
     RecipesModule,
     AppRoutingModule,
-    HttpModule
+    HttpModule,
+    SharedModule
   ],
   /* Providrs we already know if put below it one same instnace will be shared among whole application. I am unsing anatation in root.*/
   /* But we still leave RecipeService in root as it is used amon other components - not only Recipe Feature.
