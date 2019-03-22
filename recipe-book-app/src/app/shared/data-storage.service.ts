@@ -17,7 +17,8 @@ export class DataStorageService {
 
   storeRecipes() {
     const token = this.authService.getTokenId();
-    return this.httpClient.put('https://ng-recipe-book-udemi.firebaseio.com/recipes.json?auth=' + token, this.recipeService.getRecipes());
+    return this.httpClient.put('https://ng-recipe-book-udemi.firebaseio.com/recipes.json?auth=' + token, this.recipeService.getRecipes(),
+    { observe: 'events'});
   }
 
   /* We can subscribe in service or at component level like in case storeRecipes, there are some benifits to subscribe

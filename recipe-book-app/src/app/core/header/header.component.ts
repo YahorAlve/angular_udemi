@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { DataStorageService } from '../../shared/data-storage.service';
-import { Response } from '@angular/http';
 import { AuthService } from '../../auth/auth.service';
+import { HttpEvent, HttpEventType } from '@angular/common/http';
 
 @Component({
   selector: 'app-header',
@@ -20,8 +20,10 @@ export class HeaderComponent implements OnInit {
   onSaveData() {
     this.dataStorageService.storeRecipes()
       .subscribe(
-        (response: Response) => {
-          console.log(response.json());
+        (response: HttpEvent<Object>) => {
+          // we can a few httpEventTypes which some times could be handy for doing some ui logic and new client with
+          // observ 'events' provide us with this opportunity
+          console.log(response.type === HttpEventType.Sent);
         }
       );
   }
