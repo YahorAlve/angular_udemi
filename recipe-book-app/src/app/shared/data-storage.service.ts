@@ -40,7 +40,13 @@ export class DataStorageService {
     (in case we need to do it)*/
     /* Below will garantee us that some token will be returned (in some cases expired as design not the best)  */
     const token = this.authService.getTokenId();
-    return this.httpClient.get<Recipe[]>('https://ng-recipe-book-udemi.firebaseio.com/recipes.json?auth=' + token)
+    return this.httpClient.get<Recipe[]>('https://ng-recipe-book-udemi.firebaseio.com/recipes.json?auth=' + token, {
+        observe: 'body',
+        responseType: 'json'
+        // in new httpclient we can add more properties like that for automatic proccessning of our response
+        // (for options need to read documentation)
+    }
+    )
                   .pipe(map(
                     // default behaviour extract json values - can be overwritten
                     // instead of recipes: Recipe[] - we can set up generic in get<Recipe[]>
