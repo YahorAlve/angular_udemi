@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { RecipeService } from '../recipe-book/recipe.service';
 import { Recipe } from '../recipe-book/recipe.module';
 import { map } from 'rxjs/operators';
@@ -17,9 +16,10 @@ export class DataStorageService {
 
   storeRecipes() {
     const token = this.authService.getTokenId();
-    return this.httpClient.put('https://ng-recipe-book-udemi.firebaseio.com/recipes.json?auth=' + token, this.recipeService.getRecipes(),
+    return this.httpClient.put('https://ng-recipe-book-udemi.firebaseio.com/recipes.json', this.recipeService.getRecipes(),
     {
       observe: 'events',
+      params: new HttpParams().set('auth', token)
       // we can append, set and so on headers. Some headers are set up by browser and con not be removed
       // headers: new HttpHeaders().set('Authorization', 'FirstName LastName')
   });
@@ -45,9 +45,10 @@ export class DataStorageService {
     (in case we need to do it)*/
     /* Below will garantee us that some token will be returned (in some cases expired as design not the best)  */
     const token = this.authService.getTokenId();
-    return this.httpClient.get<Recipe[]>('https://ng-recipe-book-udemi.firebaseio.com/recipes.json?auth=' + token, {
+    return this.httpClient.get<Recipe[]>('https://ng-recipe-book-udemi.firebaseio.com/recipes.json', {
         observe: 'body',
-        responseType: 'json'
+        responseType: 'json',
+        params: new HttpParams().set('auth', token)
         // in new httpclient we can add more properties like that for automatic proccessning of our response
         // (for options need to read documentation)
     }
