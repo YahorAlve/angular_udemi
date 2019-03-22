@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams, HttpRequest } from '@angular/common/http';
 import { RecipeService } from '../recipe-book/recipe.service';
 import { Recipe } from '../recipe-book/recipe.module';
 import { map } from 'rxjs/operators';
@@ -16,13 +16,21 @@ export class DataStorageService {
 
   storeRecipes() {
     const token = this.authService.getTokenId();
-    return this.httpClient.put('https://ng-recipe-book-udemi.firebaseio.com/recipes.json', this.recipeService.getRecipes(),
+    /* return this.httpClient.put('https://ng-recipe-book-udemi.firebaseio.com/recipes.json', this.recipeService.getRecipes(),
     {
       observe: 'events',
       params: new HttpParams().set('auth', token)
       // we can append, set and so on headers. Some headers are set up by browser and con not be removed
       // headers: new HttpHeaders().set('Authorization', 'FirstName LastName')
-  });
+  }); */
+
+  /*HttpRequest allows us to monitor for progress of request what is really helpful for loading big files - show progress bar*/
+  const request = new HttpRequest('PUT', 'https://ng-recipe-book-udemi.firebaseio.com/recipes.json', this.recipeService.getRecipes(),
+    {
+      params: new HttpParams().set('auth', token),
+      reportProgress: true
+    });
+  return this.httpClient.request(request);
   }
 
   /* We can subscribe in service or at component level like in case storeRecipes, there are some benifits to subscribe
