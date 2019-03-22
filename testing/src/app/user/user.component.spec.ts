@@ -19,9 +19,13 @@ describe('Component: User', () => {
   });
 
   it('should use the user name from the service', () => {
+    // it will crate instance with empty fields
     let fixture = TestBed.createComponent(UserComponent);
     let app = fixture.debugElement.componentInstance;
+    // here we just getting injected service from component
     let userService = fixture.debugElement.injector.get(UserService);
+    // in browser it happens automatically but here we need initiate updating of UserComponentInstance fields
+    // because ngOninit triggers on first change event
     fixture.detectChanges();
     expect(userService.user.name).toEqual(app.user.name);
   });
@@ -65,6 +69,7 @@ describe('Component: User', () => {
     });
   }));
 
+  // fakeAsync it is the same as sunch but different approauch
   it('should fetch data successfully if called asynchronously', fakeAsync(() => {
     let fixture = TestBed.createComponent(UserComponent);
     let app = fixture.debugElement.componentInstance;
@@ -72,6 +77,7 @@ describe('Component: User', () => {
     let spy = spyOn(dataService, 'getDetails')
       .and.returnValue(Promise.resolve('Data'));
     fixture.detectChanges();
+    // tick tells complete all asynch tasks imidiatelly and as we return value our own in test we will get this value
     tick();
     expect(app.data).toBe('Data');
 
