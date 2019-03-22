@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { RecipeService } from '../recipe-book/recipe.service';
 import { Recipe } from '../recipe-book/recipe.module';
 import { map } from 'rxjs/operators';
@@ -18,7 +18,11 @@ export class DataStorageService {
   storeRecipes() {
     const token = this.authService.getTokenId();
     return this.httpClient.put('https://ng-recipe-book-udemi.firebaseio.com/recipes.json?auth=' + token, this.recipeService.getRecipes(),
-    { observe: 'events'});
+    {
+      observe: 'events',
+      // we can append, set and so on headers. Some headers are set up by browser and con not be removed
+      // headers: new HttpHeaders().set('Authorization', 'FirstName LastName')
+  });
   }
 
   /* We can subscribe in service or at component level like in case storeRecipes, there are some benifits to subscribe
