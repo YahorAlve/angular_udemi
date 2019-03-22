@@ -15,7 +15,6 @@ export class DataStorageService {
               private authService: AuthService) { }
 
   storeRecipes() {
-    const token = this.authService.getTokenId();
     /* return this.httpClient.put('https://ng-recipe-book-udemi.firebaseio.com/recipes.json', this.recipeService.getRecipes(),
     {
       observe: 'events',
@@ -27,7 +26,6 @@ export class DataStorageService {
   /*HttpRequest allows us to monitor for progress of request what is really helpful for loading big files - show progress bar*/
   const request = new HttpRequest('PUT', 'https://ng-recipe-book-udemi.firebaseio.com/recipes.json', this.recipeService.getRecipes(),
     {
-      params: new HttpParams().set('auth', token),
       reportProgress: true
     });
   return this.httpClient.request(request);

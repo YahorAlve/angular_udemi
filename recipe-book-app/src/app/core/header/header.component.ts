@@ -23,7 +23,8 @@ export class HeaderComponent implements OnInit {
         (response: HttpEvent<Object>) => {
           // we can a few httpEventTypes which some times could be handy for doing some ui logic and new client with
           // observ 'events' provide us with this opportunity
-          console.log(response.type === HttpEventType.Sent);
+          // console.log(response.type === HttpEventType.Sent);
+          console.log(response);
         }
       );
   }

@@ -3,11 +3,12 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SharedModule } from './shared/shared.module';
 import { ShoppingListModule } from './shopping-list/shopping-list.module';
 import { AuthModule } from './auth/auth.module';
 import { CoreModule } from './core/core.module';
+import { AuthInterceptor } from './shared/auth.interceptor';
 
 @NgModule({
   /* In declarations we put Components, Directives and Pipes the module uses. */
@@ -47,7 +48,9 @@ import { CoreModule } from './core/core.module';
   /* We can also put all providers into Core Module and it will be injected into root injector and same instances will be shared
   withing application. In my case I use annotatioin in root, but there are a lot things to keep in mind, please read :
   https://medium.com/@tomastrajan/total-guide-to-angular-6-dependency-injection-providedin-vs-providers-85b7a347b59f*/
-  providers: [],
+  providers: [
+    {provide : HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
+  ],
   /* It is just first component our application should start form. In our case app.component.html will be loaded first.  */
   bootstrap: [AppComponent]
 })
