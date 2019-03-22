@@ -36,3 +36,7 @@ https://ng-recipe-book-udemi.firebaseio.com/
 Complilation Typescript to JS is performed by CLI and not related to angular. What Angular does it parse and compiles HTML template files to java script - it has to do it to make everything work. In theory we can type JS in HTML templates by ourselves but that is why Angular is used for that we don't need to do it. Ang does it because of performance - it is faster to access JS code then a DOM in the browser.
 To Execute AOT compilation we need to execute command ng build --prod --aot
 It will save a lot data from coming into browser as compiler would be skipped for aot compilation (vendor.js - includes angular JIT compiler and wights 3-6 MB) We still will supply vendor file but it is going to be much smaller.  
+
+## Note On Deployment to Web Server
+Each time we put url in browser bar intially it sends request to web server and web server usually know nothing on routing in angular app and as result will throw not found error page. We need that web server each time returns index.html instead of 404 not found so angular app can step in and route to proper page or show not found page using angular htmls not web server.
+
