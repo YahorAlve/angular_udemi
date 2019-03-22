@@ -24,7 +24,7 @@ interface CanDrive {
     accelerate(speed:number): void;
 }
 
-let car:CanDrive = {
+let car : CanDrive = {
     accelerate: function (speed:number) {
         // ...
     }

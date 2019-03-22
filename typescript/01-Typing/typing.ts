@@ -1,5 +1,7 @@
 // TypeScripts - well - strong typing allows us to define types for our variables and class members
 // The compiler is going to yell at us if we assign a value of a wrong type to such a variable or member
+// WHen we run util to compile ts to js it will create js file and actially assign anyting to var variable 
+// in js file w/o errors but compiler will yell about this
 
 // Declaring a variable with a type
 // Using the 'let' keyword to create a variable ('const' would define an immutable constant)

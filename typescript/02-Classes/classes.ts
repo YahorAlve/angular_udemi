@@ -6,6 +6,9 @@
 class Car {
     engineName: string;
     gears: number;
+
+    // js doesn;t have private incapsulation - it is ts feature and while compiling ts to js it will check we don't
+    // access thos private property outside of class Car 
     private speed: number;
 
     constructor(speed: number) {
