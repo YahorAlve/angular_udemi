@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { RecipeService } from '../recipe-book/recipe.service';
 import { Recipe } from '../recipe-book/recipe.module';
 import { map } from 'rxjs/operators';
@@ -10,13 +11,13 @@ import { AuthService } from '../auth/auth.service';
 })
 export class DataStorageService {
 
-  constructor(private http: Http,
+  constructor(private httpClient: HttpClient,
               private recipeService: RecipeService,
               private authService: AuthService) { }
 
   storeRecipes() {
     const token = this.authService.getTokenId();
-    return this.http.put('https://ng-recipe-book-udemi.firebaseio.com/recipes.json?auth=' + token, this.recipeService.getRecipes());
+    return this.httpClient.put('https://ng-recipe-book-udemi.firebaseio.com/recipes.json?auth=' + token, this.recipeService.getRecipes());
   }
 
   /* We can subscribe in service or at component level like in case storeRecipes, there are some benifits to subscribe
@@ -39,10 +40,11 @@ export class DataStorageService {
     (in case we need to do it)*/
     /* Below will garantee us that some token will be returned (in some cases expired as design not the best)  */
     const token = this.authService.getTokenId();
-    return this.http.get('https://ng-recipe-book-udemi.firebaseio.com/recipes.json?auth=' + token)
+    return this.httpClient.get<Recipe[]>('https://ng-recipe-book-udemi.firebaseio.com/recipes.json?auth=' + token)
                   .pipe(map(
-                    (response: Response) => {
-                      const recipes: Recipe[] = response.json();
+                    // default behaviour extract json values - can be overwritten
+                    // instead of recipes: Recipe[] - we can set up generic in get<Recipe[]>
+                    (recipes) => {
                       for (const recipe of recipes) {
                         if (!recipe['ingredients']) {
                           console.log(recipe);
