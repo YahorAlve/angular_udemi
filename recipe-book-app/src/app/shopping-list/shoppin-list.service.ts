@@ -1,4 +1,4 @@
-import { Injectable, EventEmitter } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { IngredientModule } from '../shared/ingredient/ingredient.module';
 import { Subject } from 'rxjs';
 
@@ -17,19 +17,20 @@ export class ShoppinListService {
 
   constructor() { }
 
-  getIngredients() {
+  /* getIngredients() {
     return this.ingredients.slice();
-  }
+  }*/
 
   getIngredient(index: number) {
     return this.ingredients[index];
   }
 
-  addNewIngredient(newIngredient: IngredientModule) {
+  /* addNewIngredient(newIngredient: IngredientModule) {
     this.ingredients.push(newIngredient);
     console.log('Ingredients was added ' + newIngredient);
     this.ingredientsChanged.next(this.ingredients.slice());
   }
+ */
 
   addNewIngredients(newIngredients: IngredientModule[]) {
     // this.ingredients.concat creates new array that is why we need to assign it to our this.ingredients to re-point it

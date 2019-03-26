@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IngredientModule } from '../shared/ingredient/ingredient.module';
 import { ShoppinListService } from './shoppin-list.service';
 import { Subscription, Observable } from 'rxjs';
