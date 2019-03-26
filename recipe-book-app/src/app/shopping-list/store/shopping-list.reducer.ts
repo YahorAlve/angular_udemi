@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { IngredientModule } from '../shared/ingredient/ingredient.module';
+import { IngredientModule } from '../../shared/ingredient/ingredient.module';
 
 const initialState = {
     // since we are in object we assign values throug : instead of =
@@ -9,8 +9,6 @@ const initialState = {
         new IngredientModule('Tomatoes', 10)
     ]
 };
-
-export const ADD_INGREDIENT = 'ADD_INGREDIENT';
 
 /* state = initialState in function the way to have default value for state */
 export function shoppingListReducer(state = initialState, action: Action) {
