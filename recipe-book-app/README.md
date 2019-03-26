@@ -42,4 +42,5 @@ Each time we put url in browser bar intially it sends request to web server and 
 
 ## Nots on Redux approach
 Nothing wrong with way to handle state through services, subjects, eventemitters but in huge application it is getting hard to keep track on where which state is managed. So we can use redux approach - it is just pattern and there is some hand implementations for angular.
+npm install --save @ngrx/store to install ngrx - looks like implementation of this approach
 
