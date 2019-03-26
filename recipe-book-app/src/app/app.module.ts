@@ -9,6 +9,7 @@ import { ShoppingListModule } from './shopping-list/shopping-list.module';
 import { AuthModule } from './auth/auth.module';
 import { CoreModule } from './core/core.module';
 import { AuthInterceptor } from './shared/auth.interceptor';
+import { LoggingInterceptor } from './shared/logging.interceptor';
 
 @NgModule({
   /* In declarations we put Components, Directives and Pipes the module uses. */
@@ -49,7 +50,10 @@ import { AuthInterceptor } from './shared/auth.interceptor';
   withing application. In my case I use annotatioin in root, but there are a lot things to keep in mind, please read :
   https://medium.com/@tomastrajan/total-guide-to-angular-6-dependency-injection-providedin-vs-providers-85b7a347b59f*/
   providers: [
-    {provide : HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
+    {provide : HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
+    // request will process by intercepters in order they are placed in providers array (First is AuthInterceptor, 
+    // Second is LoggingInterceptor)
+    {provide : HTTP_INTERCEPTORS, useClass: LoggingInterceptor, multi: true}
   ],
   /* It is just first component our application should start form. In our case app.component.html will be loaded first.  */
   bootstrap: [AppComponent]
