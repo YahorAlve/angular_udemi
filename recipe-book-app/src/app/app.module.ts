@@ -10,6 +10,8 @@ import { AuthModule } from './auth/auth.module';
 import { CoreModule } from './core/core.module';
 import { AuthInterceptor } from './shared/auth.interceptor';
 import { LoggingInterceptor } from './shared/logging.interceptor';
+import { StoreModule } from '@ngrx/store';
+import { shoppingListReducer } from './shopping-list/store/shopping-list.reducer';
 
 @NgModule({
   /* In declarations we put Components, Directives and Pipes the module uses. */
@@ -40,7 +42,9 @@ import { LoggingInterceptor } from './shared/logging.interceptor';
     /* Because of this router wildcard thing i put CoreModule last it looks that it adds patthes into list in sequence
     you put your Modules in Imports and we know that if wildcard route will be before other urls it will called first what 
     means all urls after will just be overwritten by this wildcard mapping. */
-    CoreModule
+    CoreModule,
+    /*  by adding this line ngrx will create store, put there initial state and register shoppingListReducer*/
+    StoreModule.forRoot({shoppingList: shoppingListReducer})
   ],
   /* Providrs we already know if put below it one same instnace will be shared among whole application. I am unsing anatation in root.*/
   /* But we still leave RecipeService in root as it is used amon other components - not only Recipe Feature.
