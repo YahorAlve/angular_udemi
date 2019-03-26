@@ -3,7 +3,6 @@ import { HttpClient, HttpHeaders, HttpParams, HttpRequest } from '@angular/commo
 import { RecipeService } from '../recipe-book/recipe.service';
 import { Recipe } from '../recipe-book/recipe.module';
 import { map } from 'rxjs/operators';
-import { AuthService } from '../auth/auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +10,7 @@ import { AuthService } from '../auth/auth.service';
 export class DataStorageService {
 
   constructor(private httpClient: HttpClient,
-              private recipeService: RecipeService,
-              private authService: AuthService) { }
+              private recipeService: RecipeService) { }
 
   storeRecipes() {
     /* return this.httpClient.put('https://ng-recipe-book-udemi.firebaseio.com/recipes.json', this.recipeService.getRecipes(),
@@ -50,11 +48,11 @@ export class DataStorageService {
     /* Executing get inside callback of promise also not teh best soultion as we can't return observable as we are doing in storeRecipe 
     (in case we need to do it)*/
     /* Below will garantee us that some token will be returned (in some cases expired as design not the best)  */
-    const token = this.authService.getTokenId();
+    // const token = this.authService.getTokenId();
     return this.httpClient.get<Recipe[]>('https://ng-recipe-book-udemi.firebaseio.com/recipes.json', {
         observe: 'body',
         responseType: 'json',
-        params: new HttpParams().set('auth', token)
+        // params: new HttpParams().set('auth', token)
         // in new httpclient we can add more properties like that for automatic proccessning of our response
         // (for options need to read documentation)
     }
