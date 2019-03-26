@@ -43,7 +43,8 @@ import { shoppingListReducer } from './shopping-list/store/shopping-list.reducer
     you put your Modules in Imports and we know that if wildcard route will be before other urls it will called first what 
     means all urls after will just be overwritten by this wildcard mapping. */
     CoreModule,
-    /*  by adding this line ngrx will create store, put there initial state and register shoppingListReducer*/
+    /*  by adding this line ngrx will create global store (for whole app - same as services), put there initial state 
+    and register shoppingListReducer*/
     StoreModule.forRoot({shoppingList: shoppingListReducer})
   ],
   /* Providrs we already know if put below it one same instnace will be shared among whole application. I am unsing anatation in root.*/
