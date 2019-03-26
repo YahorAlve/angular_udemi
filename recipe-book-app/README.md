@@ -40,3 +40,6 @@ It will save a lot data from coming into browser as compiler would be skipped fo
 ## Note On Deployment to Web Server
 Each time we put url in browser bar intially it sends request to web server and web server usually know nothing on routing in angular app and as result will throw not found error page. We need that web server each time returns index.html instead of 404 not found so angular app can step in and route to proper page or show not found page using angular htmls not web server.
 
+## Nots on Redux approach
+Nothing wrong with way to handle state through services, subjects, eventemitters but in huge application it is getting hard to keep track on where which state is managed. So we can use redux approach - it is just pattern and there is some hand implementations for angular.
+
