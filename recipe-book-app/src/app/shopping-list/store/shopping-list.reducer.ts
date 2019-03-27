@@ -25,6 +25,38 @@ export function shoppingListReducer(state = initialState, action: ShoppingListAc
                 // we also can use this to extand ingredients array
                 ingredients: [...state.ingredients, action.payload]
             };
+        case ShoppingListActions.ADD_INGREDIENTS:
+            return {
+                ...state,
+                ingredients: [...state.ingredients, ...action.payload]
+            };
+        case ShoppingListActions.UPDATE_INGREDIENT:
+            // all these actions just made to workj with copy of ingredient list not with real one, not realy sure why it is important if 
+            // still going to overwrite the state
+            const ingredient = state.ingredients[action.payload.index];
+            const updatedIngredient = {
+                // by this we spread all properties of current ingredient in current json
+                ...ingredient,
+                // by this we overrite all properties of current with new one values
+                ...action.payload.ingredient
+            };
+            // now we need to add this updatedIngredient to array
+            // this is just copy of current ingredients
+            const ingredients = [...state.ingredients];
+            // update one ingredient at specific possition
+            ingredients[action.payload.index] = updatedIngredient;
+            return {
+                ...state,
+                ingredients: ingredients
+            };
+        case ShoppingListActions.DELETE_INGREDIENT:
+            const oldIngredients = [...state.ingredients];
+            // update one ingredient at specific possition
+            oldIngredients.splice(action.payload, 1);
+            return {
+                ...state,
+                ingredients: oldIngredients
+            };
         default:  return state;
     }
 }
