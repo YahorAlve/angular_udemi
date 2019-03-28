@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+/* import { Injectable } from '@angular/core';
 import { IngredientModule } from '../shared/ingredient/ingredient.module';
 import { Subject } from 'rxjs';
 
@@ -21,10 +21,10 @@ export class ShoppinListService {
     return this.ingredients.slice();
   }*/
 
-  getIngredient(index: number) {
+  /* getIngredient(index: number) {
     return this.ingredients[index];
   }
-
+ */
   /* addNewIngredient(newIngredient: IngredientModule) {
     this.ingredients.push(newIngredient);
     console.log('Ingredients was added ' + newIngredient);
@@ -52,4 +52,4 @@ export class ShoppinListService {
     this.ingredientsChanged.next(this.ingredients.slice());
   } */
 
-}
+/* } */

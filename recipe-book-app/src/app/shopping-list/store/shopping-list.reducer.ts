@@ -3,13 +3,24 @@ import * as ShoppingListActions from './shopping-list.actions';
 
 import { IngredientModule } from '../../shared/ingredient/ingredient.module';
 
-const initialState = {
+export interface AppState {
+    shoppingList: State;
+}
+export interface State {
+    ingredients: IngredientModule[];
+    editedIngredient: IngredientModule;
+    editedIngredientIndex: number;
+}
+
+const initialState: State = {
     // since we are in object we assign values throug : instead of =
     // in object it means in json javascript object
     ingredients: [
         new IngredientModule('Apples', 5),
         new IngredientModule('Tomatoes', 10)
-    ]
+    ],
+    editedIngredient: null,
+    editedIngredientIndex: -1
 };
 
 /* state = initialState in function the way to have default value for state */
@@ -33,7 +44,7 @@ export function shoppingListReducer(state = initialState, action: ShoppingListAc
         case ShoppingListActions.UPDATE_INGREDIENT:
             // all these actions just made to workj with copy of ingredient list not with real one, not realy sure why it is important if 
             // still going to overwrite the state
-            const ingredient = state.ingredients[action.payload.index];
+            const ingredient = state.ingredients[state.editedIngredientIndex];
             const updatedIngredient = {
                 // by this we spread all properties of current ingredient in current json
                 ...ingredient,
@@ -44,7 +55,7 @@ export function shoppingListReducer(state = initialState, action: ShoppingListAc
             // this is just copy of current ingredients
             const ingredients = [...state.ingredients];
             // update one ingredient at specific possition
-            ingredients[action.payload.index] = updatedIngredient;
+            ingredients[state.editedIngredientIndex] = updatedIngredient;
             return {
                 ...state,
                 ingredients: ingredients
@@ -52,10 +63,18 @@ export function shoppingListReducer(state = initialState, action: ShoppingListAc
         case ShoppingListActions.DELETE_INGREDIENT:
             const oldIngredients = [...state.ingredients];
             // update one ingredient at specific possition
-            oldIngredients.splice(action.payload, 1);
+            oldIngredients.splice(state.editedIngredientIndex, 1);
             return {
                 ...state,
                 ingredients: oldIngredients
+            };
+        case ShoppingListActions.START_EDIT:
+        // Mentor mentioned if we want to do it in imutable way we can put spread operator ... looks like it copies values
+            const editedIngredient = {...state.ingredients[action.payload]};
+            return {
+                ...state,
+                editedIngredient: editedIngredient,
+                editedIngredientIndex: action.payload
             };
         default:  return state;
     }
