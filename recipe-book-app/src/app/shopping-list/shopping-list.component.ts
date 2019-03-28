@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { IngredientModule } from '../shared/ingredient/ingredient.module';
 import { Subscription, Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
-import * as fromShoppingList from '../shopping-list/store/shopping-list.reducer';
+import * as fromApp from '../store/app.reducer';
 import * as ShoppingListActions from '../shopping-list/store/shopping-list.actions';
 
 @Component({
@@ -19,7 +19,7 @@ export class ShoppingListComponent implements OnInit {
 
   shoppingListState: Observable<{ingredients: IngredientModule[]}>;
 
-  constructor(private store: Store<fromShoppingList.AppState>) { }
+  constructor(private store: Store<fromApp.AppState>) { }
 
   ngOnInit() {
     // here select name of slice of store provided in app.module
