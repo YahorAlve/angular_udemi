@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import * as firebase from 'firebase';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import * as fromApp from '../store/app.reducer';
+import * as AuthActions from '../auth/store/auth.actions';
 
 @Injectable({
   providedIn: 'root'
@@ -9,10 +12,17 @@ export class AuthService {
 
   token: string;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private store: Store<fromApp.AppState>) { }
 
+  // We can't use reducer with async funtions - changing state is sync operation, but we can call it in then of firebase function
+  // as it will be executed when it has done already
   signUpUser(email: string, password: string) {
     firebase.auth().createUserWithEmailAndPassword(email, password)
+        .then(
+          user => {
+            this.store.dispatch(new AuthActions.SignUp());
+          }
+        )
         .catch(
           error => console.log(error)
         );
@@ -22,6 +32,7 @@ export class AuthService {
     firebase.auth().signInWithEmailAndPassword(email, password)
         .then(
           response => {
+            this.store.dispatch(new AuthActions.SignIn());
             this.router.navigate(['/']);
             /*So one of ways to solve token issue is call token set up while doing login and re-setup in when doing getTokenId
             It looks it is still not gurantee that token id will be set up imidiatly but not long time (call to firebase)
@@ -30,7 +41,7 @@ export class AuthService {
               .then(
                 (token: string) => {
                   console.log(this.token);
-                  this.token = token;
+                  this.store.dispatch(new AuthActions.SetToken(token));
                 }
               );
           }
@@ -60,6 +71,6 @@ export class AuthService {
 
   logout() {
     firebase.auth().signOut();
-    this.token = null;
+    this.store.dispatch(new AuthActions.LogOut());
   }
 }
