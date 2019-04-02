@@ -40,6 +40,31 @@ export class AuthEffects {
         })
     );
 
+    @Effect()
+    authSignIn = this.actions$.pipe(
+        ofType(AuthActions.TRY_SIGN_IN),
+        map((action: AuthActions.TrySignIn) => {
+            return action.payload;
+        }),
+        switchMap((user: {username: string, password: string}) => {
+            return from(firebase.auth().signInWithEmailAndPassword(user.username, user.password));
+        }),
+        switchMap(() => {
+            return from(firebase.auth().currentUser.getIdToken());
+        }),
+        mergeMap((token: string) => {
+            return [
+                {
+                    type: AuthActions.SIGN_IN
+                },
+                {
+                    type: AuthActions.SET_TOKEN,
+                    token: token
+                }
+            ];
+        })
+    );
+
     /* Observable Name convetnion is add $ to the name like name$ */
     /* ngrx/effects (AuthEffects here) can access directly actions from registered stores in application
     we just need to add EffectsModule in app module*/
