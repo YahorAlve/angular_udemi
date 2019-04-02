@@ -9,6 +9,8 @@
           <label for="pass">Password</label>
           <input type="password" name="pass" id="pass" ngModel class="form-control" required>
         </div>
+        <!-- Use NGRX state feature only for states shared among many others components. No need to maintain it here for instatnce
+        where we have only one local component dependent on if form is valid. -->
         <button class="btn btn-primary" type="submit" [disabled]="!f.valid">Sign In</button>
       </form>
     </div>
