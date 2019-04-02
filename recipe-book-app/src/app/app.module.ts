@@ -15,6 +15,7 @@ import { reducers } from './store/app.reducer';
 import { AuthEffects } from './auth/store/auth.effects';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
   /* In declarations we put Components, Directives and Pipes the module uses. */
@@ -50,7 +51,9 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
     and register shoppingListReducer*/
     StoreModule.forRoot(reducers),
     EffectsModule.forRoot([AuthEffects]),
-    StoreRouterConnectingModule
+    StoreRouterConnectingModule,
+    // also we need to add redux browser extension in chrome to debug our store states
+    StoreDevtoolsModule
   ],
   /* Providrs we already know if put below it one same instnace will be shared among whole application. I am unsing anatation in root.*/
   /* But we still leave RecipeService in root as it is used amon other components - not only Recipe Feature.
