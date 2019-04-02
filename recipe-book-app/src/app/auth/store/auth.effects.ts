@@ -1,6 +1,6 @@
 import { Effect, Actions, ofType } from '@ngrx/effects';
 import * as AuthActions from './auth.actions';
-import { map, switchMap, mergeMap } from 'rxjs/operators';
+import { map, switchMap, mergeMap, tap } from 'rxjs/operators';
 import * as firebase from 'firebase';
 
 import { from } from 'rxjs';
@@ -9,6 +9,11 @@ import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthEffects {
+
+    /* Observable Name convetnion is add $ to the name like name$ */
+    /* ngrx/effects (AuthEffects here) can access directly actions from registered stores in application
+    we just need to add EffectsModule in app module*/
+    constructor(private actions$: Actions, private router: Router) {}
 
     /* The main idea behind effects that we are doing something after event happend but we don't change the state at all*/
 
@@ -67,11 +72,12 @@ export class AuthEffects {
         })
     );
 
-    /* Observable Name convetnion is add $ to the name like name$ */
-    /* ngrx/effects (AuthEffects here) can access directly actions from registered stores in application
-    we just need to add EffectsModule in app module*/
-    constructor(private actions$: Actions, private router: Router) {
-
-    }
+    @Effect({dispatch: false})
+    authLogOut = this.actions$.pipe(
+        ofType(AuthActions.LOG_OUT),
+        tap(() => {
+            this.router.navigate(['/']);
+        })
+    );
 
 }
