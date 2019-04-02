@@ -9,6 +9,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RecipesRoutingModule } from './recipes-routing.module';
 import { PleaseSelectComponent } from '../please-select/please-select.component';
 import { SharedModule } from '../shared/shared.module';
+import { StoreModule } from '@ngrx/store';
+import { recipeReducer } from './store/recipe.reducer';
 
 
 /* Just reminder that import above is fro typescript, when cli(webpack) builds source angular files it needs
@@ -35,7 +37,10 @@ to parse ts and type class name to real angular code. Import in @NgModule is for
     CommonModule,
     ReactiveFormsModule,
     SharedModule,
-    RecipesRoutingModule
+    RecipesRoutingModule,
+    // StoreModule.forFeature() will tell ngrx to inject store globally once this module will be loaded into app
+    // so it will work even with lazy loading of the current module. For not lazy loading modules we just set up for root
+    StoreModule.forFeature('recipes', recipeReducer)
   ]
 })
 export class RecipesModule { }
