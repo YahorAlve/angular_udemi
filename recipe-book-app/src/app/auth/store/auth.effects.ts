@@ -5,6 +5,7 @@ import * as firebase from 'firebase';
 
 import { from } from 'rxjs';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthEffects {
@@ -53,6 +54,7 @@ export class AuthEffects {
             return from(firebase.auth().currentUser.getIdToken());
         }),
         mergeMap((token: string) => {
+            this.router.navigate(['/']);
             return [
                 {
                     type: AuthActions.SIGN_IN
@@ -68,7 +70,7 @@ export class AuthEffects {
     /* Observable Name convetnion is add $ to the name like name$ */
     /* ngrx/effects (AuthEffects here) can access directly actions from registered stores in application
     we just need to add EffectsModule in app module*/
-    constructor(private actions$: Actions) {
+    constructor(private actions$: Actions, private router: Router) {
 
     }
 
