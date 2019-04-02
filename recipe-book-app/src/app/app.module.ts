@@ -14,6 +14,7 @@ import { StoreModule } from '@ngrx/store';
 import { reducers } from './store/app.reducer';
 import { AuthEffects } from './auth/store/auth.effects';
 import { EffectsModule } from '@ngrx/effects';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
 
 @NgModule({
   /* In declarations we put Components, Directives and Pipes the module uses. */
@@ -48,7 +49,8 @@ import { EffectsModule } from '@ngrx/effects';
     /*  by adding this line ngrx will create global store (for whole app - same as services), put there initial state 
     and register shoppingListReducer*/
     StoreModule.forRoot(reducers),
-    EffectsModule.forRoot([AuthEffects])
+    EffectsModule.forRoot([AuthEffects]),
+    StoreRouterConnectingModule
   ],
   /* Providrs we already know if put below it one same instnace will be shared among whole application. I am unsing anatation in root.*/
   /* But we still leave RecipeService in root as it is used amon other components - not only Recipe Feature.
