@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 
 import * as fromApp from '../../store/app.reducer';
 import * as fromAuth from '../../auth/store/auth.reducer';
+import * as AuthActions from '../../auth/store/auth.actions';
 
 @Component({
   selector: 'app-header',
@@ -41,7 +42,7 @@ export class HeaderComponent implements OnInit {
   }
 
   onLogOut() {
-    this.authService.logout();
+    this.store.dispatch(new AuthActions.LogOut());
   }
 
   isAuthenticated() {
