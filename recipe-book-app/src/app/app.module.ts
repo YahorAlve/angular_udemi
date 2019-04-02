@@ -17,6 +17,8 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
+import { environment } from './../environments/environment';
+
 @NgModule({
   /* In declarations we put Components, Directives and Pipes the module uses. */
   declarations: [
@@ -53,7 +55,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     EffectsModule.forRoot([AuthEffects]),
     StoreRouterConnectingModule,
     // also we need to add redux browser extension in chrome to debug our store states
-    StoreDevtoolsModule
+    !environment.production ? StoreDevtoolsModule.instrument() : []
   ],
   /* Providrs we already know if put below it one same instnace will be shared among whole application. I am unsing anatation in root.*/
   /* But we still leave RecipeService in root as it is used amon other components - not only Recipe Feature.
