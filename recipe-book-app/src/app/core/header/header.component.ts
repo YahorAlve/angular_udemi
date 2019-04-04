@@ -27,7 +27,8 @@ export class HeaderComponent implements OnInit {
   }
 
   onSaveData() {
-    this.dataStorageService.storeRecipes()
+    this.store.dispatch(new RecipeActions.StoreRecipes());
+    /* this.dataStorageService.storeRecipes()
       .subscribe(
         (response: HttpEvent<Object>) => {
           // we can a few httpEventTypes which some times could be handy for doing some ui logic and new client with
@@ -35,7 +36,7 @@ export class HeaderComponent implements OnInit {
           // console.log(response.type === HttpEventType.Sent);
           console.log(response);
         }
-      );
+      ); */
   }
 
   onFetchData() {
