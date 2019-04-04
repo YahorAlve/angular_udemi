@@ -44,3 +44,10 @@ Each time we put url in browser bar intially it sends request to web server and 
 Nothing wrong with way to handle state through services, subjects, eventemitters but in huge application it is getting hard to keep track on where which state is managed. So we can use redux approach - it is just pattern and there is some hand implementations for angular.
 npm install --save @ngrx/store to install ngrx - looks like implementation of this approach
 
+Useful Resources & Links
+Official Github Repo with Documentation: https://github.com/ngrx/platform
+
+Angular & NgRx Tutorial: https://blog.nrwl.io/using-ngrx-4-to-manage-state-in-angular-applications-64e7a1f84b7b
+
+NgRx Patterns & Techniques: https://blog.nrwl.io/ngrx-patterns-and-techniques-f46126e2b1e5
+
