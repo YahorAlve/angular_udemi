@@ -3,7 +3,11 @@ import { IngredientModule } from 'src/app/shared/ingredient/ingredient.module';
 
 import * as RecipeActions from './recipe.actions';
 
-export interface FeatureState {
+import * as fromApp from '../../store/app.reducer';
+
+/* As our Recipe module is loaded lazyly and we need to use in some places store with access to auth, shoppingList and recipes as well
+we exetend our AppState so Store<FeatureState> will have all properties inside and all will keep working.  */
+export interface FeatureState extends fromApp.AppState {
     recipes: State;
 }
 

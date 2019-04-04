@@ -52,6 +52,16 @@ export class RecipeService {
     }
   }
 
+  getRecipeIdByNameFromRcipes(name: string, recipes: Recipe[]): number {
+    let index = 0;
+    for (const recipe of recipes) {
+      if ( recipe.name === name ) {
+        return index;
+      }
+      index++;
+    }
+  }
+
   addRecipe(recipe: Recipe) {
     this.recipes.push(recipe);
     this.recipeChanged.next(this.recipes.slice());
