@@ -66,7 +66,7 @@ export class AuthEffects {
                 },
                 {
                     type: AuthActions.SET_TOKEN,
-                    token: token
+                    payload: token
                 }
             ];
         })
